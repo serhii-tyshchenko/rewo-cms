@@ -1,0 +1,56 @@
+/* stylelint-disable scss/at-if-closing-brace-space-after */
+/* stylelint-disable scss/at-if-closing-brace-newline-after */
+/* stylelint-disable scss/operator-no-unspaced */
+/* stylelint-disable scss/at-else-empty-line-before */
+/* stylelint-disable scss/at-else-closing-brace-space-after */
+/* stylelint-disable scss/at-else-closing-brace-newline-after */
+@use "variables" as *;
+
+@mixin for-size($size) {
+  @if $size ==mobile-small {
+    @media (max-width: $break-mobile-small) {
+      @content;
+    }
+  }
+
+  @else if $size ==mobile-medium {
+    @media (max-width: $break-mobile-medium) {
+      @content;
+    }
+  }
+
+  @else if $size ==mobile-large {
+    @media (max-width: $break-mobile-large) {
+      @content;
+    }
+  }
+
+  @else if $size ==tablet {
+    @media (max-width: $break-tablet) {
+      @content;
+    }
+  }
+
+  @else if $size ==laptop {
+    @media (max-width: $break-laptop) {
+      @content;
+    }
+  }
+
+  @else if $size ==laptop-large {
+    @media (max-width: $break-laptop-large) {
+      @content;
+    }
+  }
+
+  @else if $size ==4k {
+    @media (max-width: $break-4k) {
+      @content;
+    }
+  }
+}
+
+@mixin for-disabled() {
+  opacity: 0.65;
+  pointer-events: none;
+}

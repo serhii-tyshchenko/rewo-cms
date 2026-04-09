@@ -1,0 +1,38 @@
+@use "~styles/variables" as *;
+@use "~styles/mixins" as *;
+
+.input {
+  background-color: var(--background-controls);
+  border-radius: $border-radius;
+  color: var(--color-primary);
+  color-scheme: var(--color-scheme);
+  font-family: $font-primary;
+  line-height: 1.5;
+  padding: 0.375em 0.5em;
+  width: 100%;
+
+  &--small {
+    font-size: $font-size-xs;
+  }
+
+  &--normal {
+    font-size: $font-size-md;
+  }
+
+  &--big {
+    font-size: $font-size-xl;
+  }
+
+  &--error {
+    border: 2px solid var(--color-error);
+  }
+
+  &::placeholder {
+    color: var(--color-secondary);
+    filter: brightness(70%);
+  }
+
+  &:disabled {
+    @include for-disabled;
+  }
+}

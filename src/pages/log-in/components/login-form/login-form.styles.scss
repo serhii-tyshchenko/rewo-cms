@@ -1,0 +1,13 @@
+@use "~styles/variables" as *;
+
+.login-form {
+  background-color: var(--background-secondary);
+  border-radius: 0.5rem;
+  left: 50%;
+  max-width: 320px;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}

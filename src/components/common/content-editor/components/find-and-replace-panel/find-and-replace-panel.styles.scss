@@ -1,0 +1,10 @@
+.find-and-replace-panel {
+  align-items: flex-end;
+  background-color: var(--background-secondary);
+  display: grid;
+  gap: 0.5rem;
+  grid-template: 1fr / 1fr 1fr max-content;
+  padding-bottom: 1rem;
+  position: absolute;
+  width: 100%;
+}

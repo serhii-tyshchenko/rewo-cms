@@ -1,0 +1,33 @@
+@use "~styles/variables" as *;
+
+.symbol-list {
+  tbody {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  tr {
+    display: flex;
+    gap: 0.95rem;
+  }
+
+  button {
+    $size: 2.25rem;
+
+    background: none;
+    border: 1px solid var(--background-controls);
+    border-radius: $border-radius;
+    color: var(--color-primary);
+    cursor: pointer;
+    height: $size;
+    line-height: 1;
+    outline: none;
+    width: $size;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--background-controls);
+    }
+  }
+}

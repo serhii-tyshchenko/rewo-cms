@@ -1,0 +1,82 @@
+@use "~styles/variables" as *;
+@use "~styles/mixins" as *;
+
+.ui-dialog {
+  $self: &;
+
+  background: var(--background-secondary);
+  border-radius: 10px;
+  color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  max-height: 480px;
+  max-width: 480px;
+  min-height: 320px;
+  padding: 1rem;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: $zindex-modal;
+
+  @include for-size(mobile-large) {
+    border-radius: 0;
+    height: 100vh;
+    left: 0;
+    max-height: 100vh !important;
+    max-width: 100%;
+    top: 0;
+    transform: none;
+    width: 100%;
+  }
+
+  &__backdrop {
+    backdrop-filter: blur(6px);
+    background: #000c;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: calc($zindex-modal - 1);
+  }
+
+  &__header {
+    align-items: center;
+    border-bottom: 1px solid var(--background-controls);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    position: relative;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: bold;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: auto;
+    scrollbar-width: none;
+
+    &+#{$self}__footer {
+      margin-top: 1.5rem;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btn-close {
+    position: absolute;
+    right: -0.25rem;
+    top: -0.25rem;
+  }
+}

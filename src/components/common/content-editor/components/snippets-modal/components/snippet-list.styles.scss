@@ -1,0 +1,18 @@
+@use "~styles/variables" as *;
+
+.snippet-list {
+  .snippet-item-button {
+    background: none;
+    border: 1px solid var(--background-controls);
+    border-radius: $border-radius;
+    color: var(--color-primary);
+    cursor: pointer;
+    outline: none;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--background-controls);
+      filter: none;
+    }
+  }
+}

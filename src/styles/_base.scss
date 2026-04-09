@@ -1,0 +1,71 @@
+@use "variables" as *;
+
+html {
+  font-size: 16px;
+}
+
+* {
+  border: none;
+  font-family: $font-primary;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background-primary);
+}
+
+a,
+li {
+  font-size: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+.container {
+  display: grid;
+  grid-template:
+    "header header" auto
+    "nav content" 1fr
+    / max-content 1fr;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+::spelling-error {
+  text-decoration: wavy var(--color-error) underline;
+}

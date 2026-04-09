@@ -1,0 +1,29 @@
+@use "~styles/variables" as *;
+
+.post-form {
+  $self: &;
+
+  background-color: var(--background-secondary);
+  border-radius: $border-radius;
+  display: flex;
+  flex-grow: 1;
+  padding: 0.75rem;
+  position: relative;
+
+  &__editor {
+
+    .content-editor-textarea,
+    .content-editor-preview {
+      height: calc(100vh - 564px);
+    }
+
+    &.expanded {
+
+      .content-editor-textarea,
+      .content-editor-preview {
+        height: unset;
+        max-height: calc(100vh - 370px);
+      }
+    }
+  }
+}

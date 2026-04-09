@@ -1,0 +1,24 @@
+@use "~styles/variables" as *;
+
+.header {
+  align-items: center;
+  background: var(--background-secondary);
+  display: flex;
+  grid-area: header;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  position: relative;
+
+  &__logo {
+    background: url("/src/logo.svg") no-repeat left center / 1.25rem;
+    color: var(--color-primary);
+    font: bold 1.25rem $font-secondary;
+    line-height: 1;
+    padding-left: 1.75rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@use "~styles/variables" as *;
+
+.dropdown {
+  position: relative;
+  z-index: $zindex-dropdown;
+
+  &__container {
+    background: var(--background-secondary);
+    border: 1px solid var(--background-controls);
+    border-radius: 0.25rem;
+    max-width: 200px;
+    padding: 0.5rem;
+    position: absolute;
+    right: 0;
+    top: 2.25rem;
+    width: max-content;
+  }
+}

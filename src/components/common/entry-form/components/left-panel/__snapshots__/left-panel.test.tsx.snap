@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LeftPanels > should match snapshot 1`] = `
+<div>
+  <div
+    class="post-form-left-panel"
+    data-testid="post-form-left-panel"
+  >
+    Some content
+  </div>
+</div>
+`;

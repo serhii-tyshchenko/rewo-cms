@@ -1,0 +1,46 @@
+// fonts
+$font-icon: "fontello";
+$font-primary: "Segoe UI", tahoma, sans-serif;
+$font-secondary: "Arial Narrow";
+
+// font sizes
+$font-size-xxs: 0.625rem;
+$font-size-xs: 0.75rem;
+$font-size-md: 1rem;
+$font-size-xl: 1.25rem;
+
+// padding
+$padding-sm: 0.5rem;
+
+// border
+$border-radius: 0.25rem;
+
+// palette
+$color-white: #fff;
+$color-black: #050505;
+$color-solitude: #f0f2f5;
+$color-dodger-blue: #2d88ff;
+$color-bunker: #242526;
+$color-mishka: #b0b3b8;
+$color-buttercup: #d9822b;
+$color-red: #dc3545;
+$color-green: #28a745;
+$color-cape-cod: #3a3b3c;
+$color-athens-gray: #f0f2f5;
+$color-magenta: #f0f;
+
+// media breaks
+$break-4k: 2560px;
+$break-laptop-large: 1440px;
+$break-laptop: 1024px;
+$break-tablet: 768px;
+$break-mobile-large: 425px;
+$break-mobile-medium: 375px;
+$break-mobile-small: 320px;
+
+// z-indexes
+$zindex-dropdown: 1000;
+$zindex-popover: 1050;
+$zindex-modal: 1060;
+$zindex-tooltip: 1070;
+$zindex-loader: 1080;

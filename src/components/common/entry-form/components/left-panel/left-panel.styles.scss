@@ -1,0 +1,11 @@
+.post-form-left-panel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: calc(100vh - 108px);
+  margin-right: 0.5rem;
+  overflow-y: auto;
+  padding-left: 0.125rem;
+  padding-right: 0.5rem;
+  position: relative;
+}

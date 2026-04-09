@@ -1,0 +1,11 @@
+@use "~styles/variables" as *;
+
+.notifications-container {
+  left: 50%;
+  max-width: 400px;
+  position: fixed;
+  top: 1.5rem;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: $zindex-tooltip;
+}

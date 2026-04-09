@@ -1,0 +1,40 @@
+@use "~styles/variables" as *;
+@use "~styles/mixins" as *;
+
+.textarea {
+  background-color: var(--background-controls);
+  border-radius: $border-radius;
+  color: var(--color-primary);
+  color-scheme: var(--color-scheme);
+  font-family: $font-primary;
+  line-height: 1.5;
+  min-height: 100px;
+  padding: 0.375em 0.5em;
+  resize: vertical;
+  width: 100%;
+
+  &--small {
+    font-size: $font-size-xs;
+  }
+
+  &--normal {
+    font-size: $font-size-md;
+  }
+
+  &--big {
+    font-size: $font-size-xl;
+  }
+
+  &--error {
+    border: 2px solid var(--color-error);
+  }
+
+  &::placeholder {
+    color: var(--color-secondary);
+    filter: brightness(70%);
+  }
+
+  &:disabled {
+    @include for-disabled;
+  }
+}

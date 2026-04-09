@@ -1,0 +1,9 @@
+.main {
+  background: var(--background-primary);
+  color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  grid-area: content;
+  overflow-y: auto;
+  padding: 0.5rem;
+}

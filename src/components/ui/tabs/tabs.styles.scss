@@ -1,0 +1,48 @@
+.tabs {
+  $self: &;
+
+  background-color: inherit;
+  color: inherit;
+
+  &__list {
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 0.5rem;
+
+    #{$self}--left & {
+      justify-content: start;
+    }
+
+    #{$self}--center & {
+      justify-content: center;
+    }
+
+    #{$self}--right & {
+      justify-content: end;
+    }
+
+    input {
+      border: none;
+    }
+  }
+
+  &__item {
+    color: var(--color-secondary);
+
+    &--active {
+      border-bottom: 2px solid;
+      border-radius: 0;
+      color: var(--color-accent);
+    }
+  }
+
+  &__btn {
+    background: inherit;
+    color: inherit;
+    padding: 0.5em;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

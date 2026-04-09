@@ -1,0 +1,16 @@
+@use "~styles/variables" as *;
+
+.pagination-item {
+  border-color: var(--background-controls);
+  border-radius: 50%;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  height: 36px;
+  padding: 0;
+  text-align: center;
+  width: 36px;
+
+  &:not(:disabled):hover {
+    background-color: var(--background-controls);
+  }
+}

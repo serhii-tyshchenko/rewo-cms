@@ -1,0 +1,59 @@
+@use "~styles/variables" as *;
+@use "~styles/mixins" as *;
+
+.button {
+  background: inherit;
+  border: 0;
+  border-radius: $border-radius;
+  cursor: pointer;
+  line-height: 1.5;
+  padding: 0.375em 0.75em;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  user-select: none;
+
+  &:disabled {
+    @include for-disabled;
+  }
+
+  &:not(:disabled):hover {
+    filter: brightness(110%);
+  }
+
+  &--small {
+    font-size: $font-size-xs;
+  }
+
+  &--normal {
+    font-size: $font-size-md;
+  }
+
+  &--big {
+    font-size: $font-size-xl;
+  }
+
+  &--primary {
+    background: var(--color-accent);
+    color: $color-white;
+  }
+
+  &--secondary {
+    background: transparent;
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
+  }
+
+  &--action {
+    border: 0;
+    color: var(--color-accent);
+    line-height: normal;
+    padding: 0.75em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+branch="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$branch" = "main" ] || [ "$branch" = "develop" ]; then
+  echo "RUNNING TESTS..."
+  npm run test;
+  echo "RUNNING BUILD..."
+  npm run build;
+fi

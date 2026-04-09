@@ -1,0 +1,68 @@
+@use "~styles/variables" as *;
+
+.input-file {
+  $self: &;
+
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__label {
+    background: transparent;
+    border: 1px solid var(--color-secondary);
+    border-radius: $border-radius;
+    color: var(--color-secondary);
+    cursor: pointer;
+    font-size: inherit;
+    line-height: 1.5;
+    margin-right: 0.5em;
+    padding: 0.375em 0.75em;
+    transition:
+      color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+    user-select: none;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+
+    #{$self}--disabled & {
+      cursor: default;
+      opacity: 0.65;
+
+      &:hover {
+        filter: none;
+      }
+    }
+
+    #{$self}--error & {
+      border-color: var(--color-error);
+      color: var(--color-error);
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__error {
+    color: var(--color-error);
+    flex-basis: 100%;
+    font-size: $font-size-xs;
+    padding-top: 0.25em;
+  }
+
+  &--small {
+    font-size: $font-size-xs;
+  }
+
+  &--normal {
+    font-size: $font-size-md;
+  }
+
+  &--big {
+    font-size: $font-size-xl;
+  }
+}

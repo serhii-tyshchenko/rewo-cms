@@ -1,0 +1,69 @@
+/* stylelint-disable scss/no-global-function-names */
+@use "sass:color";
+@use "~styles/variables" as *;
+
+.notification {
+  $self: &;
+  $color-info: $color-dodger-blue;
+  $color-success: $color-green;
+  $color-warning: $color-buttercup;
+  $color-error: $color-red;
+
+  align-items: center;
+  background: var(--background-secondary);
+  border-radius: $border-radius;
+  color: $color-white;
+  display: flex;
+  padding: 0.5em 0.75em;
+
+  &:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+
+  &--info {
+    background: $color-info;
+  }
+
+  &--success {
+    background: $color-success;
+  }
+
+  &--warning {
+    background: $color-warning;
+  }
+
+  &--error {
+    background: $color-error;
+  }
+
+  &__content {
+    flex-grow: 1;
+    margin-right: 0.5em;
+  }
+
+  &__message {
+    font-size: $font-size-md;
+    line-height: 1.5;
+  }
+
+  &__close-btn {
+    color: $color-white;
+    flex-shrink: 0;
+
+    #{$self}--info &:hover {
+      background-color: color.adjust($color-info, $lightness: 10%);
+    }
+
+    #{$self}--success &:hover {
+      background-color: color.adjust($color-success, $lightness: 10%);
+    }
+
+    #{$self}--warning &:hover {
+      background-color: color.adjust($color-warning, $lightness: 10%);
+    }
+
+    #{$self}--error &:hover {
+      background-color: color.adjust($color-error, $lightness: 10%);
+    }
+  }
+}

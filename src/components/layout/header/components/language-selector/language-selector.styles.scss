@@ -1,0 +1,10 @@
+.language-selector {
+  appearance: none;
+  background-color: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: var(--background-controls);
+  }
+}

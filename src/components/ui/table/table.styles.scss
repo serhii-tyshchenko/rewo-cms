@@ -1,0 +1,32 @@
+@use "~styles/variables" as *;
+
+.table {
+  border-collapse: collapse;
+  min-width: 100%;
+  text-align: center;
+  width: max-content;
+
+  th,
+  td {
+    padding: 0.5em;
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  tr:nth-child(odd) {
+    background-color: var(--background-controls);
+
+    .icon-button:not([disabled]):hover,
+    .icon-link:hover {
+      background-color: var(--background-secondary);
+    }
+  }
+
+  thead tr:first-child {
+    background-color: var(--background-secondary);
+  }
+}

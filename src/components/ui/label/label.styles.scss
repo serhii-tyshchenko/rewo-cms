@@ -1,0 +1,23 @@
+@use "~styles/variables" as *;
+
+.label {
+  color: var(--color-secondary);
+  display: block;
+  margin-bottom: 0.25em;
+
+  &--required::after {
+    content: "*";
+  }
+
+  &--small {
+    font-size: $font-size-xxs;
+  }
+
+  &--normal {
+    font-size: $font-size-xs;
+  }
+
+  &--big {
+    font-size: $font-size-md;
+  }
+}

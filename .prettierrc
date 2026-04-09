@@ -1,0 +1,32 @@
+{
+    "singleQuote": true,
+    "printWidth": 80,
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports"
+    ],
+    "importOrder": [
+        "./i18n",
+        "^react",
+        "<THIRD_PARTY_MODULES>",
+        "^@api(?:/(.*))?$",
+        "^@assets(?:/(.*))?$",
+        "^@components(?:/(.*))?$",
+        "^@constants(?:/(.*))?$",
+        "^@hooks(?:/(.*))?$",
+        "^@localization(?:/(.*))?$",
+        "^@pages(?:/(.*))?$",
+        "^@queries(?:/(.*))?$",
+        "^@services(?:/(.*))?$",
+        "^@storage(?:/(.*))?$",
+        "^@store(?:/(.*))?$",
+        "^@styles(?:/(.*))?$",
+        "^@types(?:/(.*))?$",
+        "^@utils(?:/(.*))?$",
+        "^[../]",
+        "^[./]",
+        "^.+\\.s?css$"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "importOrderSeparateGroups": true
+}

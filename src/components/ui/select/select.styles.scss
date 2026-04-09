@@ -1,0 +1,45 @@
+@use "~styles/variables" as *;
+@use "~styles/mixins" as *;
+
+.select {
+  &:disabled {
+    @include for-disabled;
+  }
+
+  background-clip: padding-box;
+  background-color: var(--background-controls);
+  border-radius: $border-radius;
+  color: var(--color-primary);
+  color-scheme: var(--color-scheme);
+  cursor: pointer;
+  font-family: $font-primary;
+  line-height: 1.5;
+  padding: 0.375em 0.5em;
+  text-overflow: ellipsis;
+
+  &:not(:disabled):hover {
+    filter: brightness(95%);
+  }
+
+  option {
+    background: var(--background-secondary);
+    color: inherit;
+    font-size: inherit;
+  }
+
+  &--small {
+    font-size: $font-size-xs;
+  }
+
+  &--normal {
+    font-size: $font-size-md;
+  }
+
+  &--big {
+    font-size: $font-size-xl;
+  }
+
+  &--error {
+    border: 2px solid var(--color-error);
+  }
+}

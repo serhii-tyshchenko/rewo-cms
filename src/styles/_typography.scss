@@ -1,0 +1,41 @@
+@use "variables" as *;
+
+h1 {
+  font: bold 3rem/1.25em $font-primary;
+}
+
+h2 {
+  font: bold 2.25rem/1.25em $font-primary;
+}
+
+h3 {
+  font: bold 1.75rem/1.25em $font-primary;
+}
+
+h4 {
+  font: bold 1.125rem/1.25em $font-primary;
+}
+
+p {
+  font: 1rem/1.5em $font-primary;
+  margin-bottom: 0.75em;
+  text-align: justify;
+}
+
+strong {
+  font-size: inherit;
+}
+
+a {
+  color: $color-dodger-blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  line-height: 1.5;
+}

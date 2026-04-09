@@ -1,0 +1,24 @@
+@use "~styles/variables" as *;
+
+.nav {
+  background: var(--background-secondary);
+  color: var(--color-primary);
+  flex-shrink: 0;
+  grid-area: nav;
+  padding: 1.25rem 0 0;
+  position: relative;
+
+  &--collapsed {
+
+    /* stylelint-disable-next-line selector-class-pattern */
+    .nav-links-item__title {
+      display: none;
+    }
+  }
+
+  &__toggle-btn {
+    bottom: 16px;
+    position: absolute;
+    right: 4px;
+  }
+}

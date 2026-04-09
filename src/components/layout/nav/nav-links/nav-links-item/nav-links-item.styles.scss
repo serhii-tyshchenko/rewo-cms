@@ -1,0 +1,31 @@
+@use "~styles/variables" as *;
+
+.nav-links-item {
+  &__link {
+    color: var(--color-primary);
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+
+    &:focus {
+      outline-offset: -2px;
+    }
+
+    &.active {
+      background-color: var(--color-accent);
+      color: $color-white;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:hover:not(.active) {
+      background-color: var(--background-controls);
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0.25rem;
+  }
+}

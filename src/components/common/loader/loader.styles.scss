@@ -1,0 +1,28 @@
+@use "~styles/variables" as *;
+
+.loader-backdrop {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $zindex-loader;
+}
+
+.loader {
+  $size: 24px;
+  $offset: 10px;
+  $stroke: 4px;
+
+  animation: spin 500ms linear infinite;
+  background-color: var(--background-secondary);
+  border: $stroke solid var(--background-controls);
+  border-bottom: $stroke solid $color-dodger-blue;
+  border-radius: 50%;
+  border-top: $stroke solid $color-dodger-blue;
+  height: $size;
+  left: $offset;
+  position: absolute;
+  top: $offset;
+  width: $size;
+}

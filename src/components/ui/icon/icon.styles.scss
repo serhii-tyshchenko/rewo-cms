@@ -1,0 +1,30 @@
+@use "~styles/variables" as *;
+
+.icon {
+  $size: 1.75em;
+  $min-size: 1.5rem;
+
+  align-items: center;
+  background: inherit;
+  border: 0;
+  border-radius: 50%;
+  color: var(--color-primary);
+  display: inline-flex;
+  height: $size;
+  justify-content: center;
+  min-height: $min-size;
+  min-width: $min-size;
+  width: $size;
+
+  &--small {
+    font-size: $font-size-xs;
+  }
+
+  &--normal {
+    font-size: $font-size-md;
+  }
+
+  &--big {
+    font-size: $font-size-xl;
+  }
+}

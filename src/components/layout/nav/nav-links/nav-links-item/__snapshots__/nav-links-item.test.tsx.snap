@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`(Component) NavLinksItem > should match snapshot 1`] = `
+<div>
+  <li
+    class="nav-links-item"
+  >
+    <a
+      class="nav-links-item__link"
+      href="/"
+      title="Home"
+    >
+      <i
+        class="icon-home"
+      />
+      <span
+        class="nav-links-item__title"
+      >
+        Home
+      </span>
+    </a>
+  </li>
+</div>
+`;

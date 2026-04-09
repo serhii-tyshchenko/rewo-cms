@@ -1,0 +1,34 @@
+@use "~styles/variables" as *;
+
+.ui-progress {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  &__label {
+    font-size: $font-size-xs;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  &__bar {
+    border-radius: 0.25rem;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  &--small {
+    height: 0.75rem;
+  }
+
+  &--normal {
+    height: 1rem;
+  }
+
+  &--big {
+    height: 1.5rem;
+  }
+}
