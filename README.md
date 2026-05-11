@@ -1,33 +1,77 @@
 # ReWo CMS
 
-A lightweight content-management interface built with React, TypeScript and Vite.
+A React and TypeScript admin panel built around the WordPress REST API.
 
 Repository: https://github.com/serhii-tyshchenko/rewo-cms
 
 ## Overview
 
-`ReWo CMS` is an admin UI for managing posts, categories, media, tags, users and related content. The project is implemented with React + TypeScript, built with Vite, and includes utilities for localization, API integration, and testing.
+`ReWo CMS` is a headless-style WordPress administration interface. Its core functionality is reading and mutating WordPress content through REST endpoints.
+
+The application connects to a WordPress instance, authenticates with a JWT token, and manages the main `wp/v2` resources used by editorial teams:
+
+- posts
+- categories
+- comments
+- media
+- tags
+- users
+
+This makes the frontend effectively a custom WordPress back office powered by a modern React UI.
+
+## WordPress API as Core Functionality
+
+The project is structured around the WordPress REST API in `src/api/`.
+
+- Authentication uses `POST /wp-json/jwt-auth/v1/token`
+- Current-user role lookup uses `GET /wp-json/wp/v2/users/me?context=edit`
+- Content entities are managed through `wp-json/wp/v2/*` endpoints
+- Bulk post deletion uses `POST /wp-json/batch/v1`
+- Pagination metadata is read from WordPress response headers such as `X-WP-Total` and `X-WP-TotalPages`
+
+Configured resource endpoints include:
+
+- `/wp-json/wp/v2/posts`
+- `/wp-json/wp/v2/categories`
+- `/wp-json/wp/v2/comments`
+- `/wp-json/wp/v2/media`
+- `/wp-json/wp/v2/tags`
+- `/wp-json/wp/v2/users`
+
+In practice, this means the app depends on a reachable WordPress backend and is not useful without that API layer.
 
 ## Key Features
 
-- Modern React with TypeScript and Vite for fast development
-- i18n support using `i18next`
-- Redux for state management
-- React Router for route handling and protected routes
-- Unit testing with Vitest and testing-library
-- Linting and formatting setup (ESLint, Prettier, Stylelint)
-- Data fetching and caching using `react-query`
-- Styling with SCSS (Sass)
+- WordPress-first content management UI for posts, taxonomy, comments, users, and media
+- JWT-based login flow against a WordPress backend
+- React Query-powered data fetching and caching for REST resources
+- React Router protected routes for authenticated admin flows
+- Redux store for shared application state
+- i18n support with `i18next`
+- SCSS-based styling system
+- Unit testing with Vitest and Testing Library
 
 ## Tech Stack
 
-- Runtime: Node.js (recommended 16+; use 18+ for best compatibility)
+- Runtime: Node.js 18+ recommended
 - Framework: React 18 + TypeScript
 - Bundler: Vite
 - State: Redux, redux-thunk
-- Testing: Vitest, @testing-library/react
-- Data fetching: `react-query` (caching, background refetching)
-- Styling: SCSS (`sass`) for project styles
+- Data fetching: `react-query`
+- Styling: SCSS via `sass`
+- Testing: Vitest, `@testing-library/react`
+
+## Backend Requirements
+
+To run this project successfully, the target WordPress installation should provide:
+
+- WordPress REST API access for `wp/v2` resources
+- JWT authentication endpoint at `/wp-json/jwt-auth/v1/token`
+- Permission for the authenticated user to access `users/me?context=edit`
+- Support for the batch endpoint `/wp-json/batch/v1` if bulk post deletion is required
+- CORS configuration that allows requests from this frontend origin
+
+If your WordPress setup does not expose the JWT route by default, you will need a plugin or custom backend implementation that provides it.
 
 ## Quickstart
 
@@ -37,19 +81,29 @@ Repository: https://github.com/serhii-tyshchenko/rewo-cms
 npm install
 ```
 
-2. Run development server
+2. Configure the WordPress API root URL
+
+Create a local environment file with the base URL of your WordPress site:
+
+```env
+VITE_API_ROOT_URL=https://your-wordpress-site.example
+```
+
+The app uses this value as the base for all API calls.
+
+3. Run the development server
 
 ```powershell
 npm run start
 ```
 
-3. Build for production
+4. Build for production
 
 ```powershell
 npm run build
 ```
 
-4. Run tests
+5. Run tests
 
 ```powershell
 npm run test
@@ -63,36 +117,37 @@ npm run test
 - `test:coverage`: Run tests and produce coverage report
 - `lint:ts`: Run ESLint across `src`
 - `lint:scss`: Run Stylelint for SCSS files
+- `storybook`: Run Storybook locally
+- `storybook:build`: Build the Storybook bundle
 
-## Project Structure (important folders)
+## Project Structure
 
-- `src/` — main source files
-  - `api/` — wrapper functions for backend API endpoints
-  - `components/` — reusable React components and UI primitives
-  - `pages/` — top-level page components (posts, users, media, etc.)
-  - `store/` — Redux configuration, actions and reducers
-  - `styles/` — SCSS sources and theme variables (project uses `sass`)
-  - `i18n.ts` — localization bootstrap
-- `public/` — static assets and localized content for builds
-- `build/` — output of CI/builds (committed as part of some deploy workflows)
+- `src/api/` - WordPress REST API wrappers for authentication and `wp/v2` resources
+- `src/pages/` - page-level screens for posts, categories, comments, media, tags, users, and login
+- `src/components/` - reusable UI building blocks
+- `src/store/` - Redux actions, reducers, selectors, and store setup
+- `src/queries/` - data-fetching hooks and query integrations
+- `src/localization/` and `src/i18n.ts` - translation setup
+- `public/` - static assets and locale files
 
 ## Configuration
 
+- `VITE_API_ROOT_URL` defines the WordPress site root used by the API client
+- WordPress endpoint constants are defined in `src/constants/_api.ts`
+- Shared API helpers for auth headers, error extraction, and pagination header parsing live in `src/api/`
 - Vite configuration: `vite.config.ts`
 - TypeScript configuration: `tsconfig.json`
-- Linting and formatting: ESLint, Prettier and Stylelint are configured via project devDependencies.
 
 ## Environment & Deployment
 
-Environment variables and backend API endpoints are configured through the `src/api` helpers and usage in services. The project includes a `homepage` field and is deployable to services like Netlify (the repo contains a `_redirects` file).
+This frontend is intended to be deployed separately from WordPress while communicating with the WordPress REST API over HTTP. The repository includes static hosting artifacts such as `public/_redirects`, making it suitable for deployments on platforms like Netlify, provided the WordPress backend is reachable from the deployed frontend.
 
 ## Contributing
 
-If you'd like to contribute:
-
 1. Fork the repository and create a feature branch
-2. Follow the existing code style and run linters/tests locally
-3. Open a pull request describing your changes
+2. Keep the WordPress API contract intact or document any backend changes
+3. Run tests and linting locally before opening a pull request
+4. Open a pull request with a clear description of the behavioral change
 
 ## License
 
