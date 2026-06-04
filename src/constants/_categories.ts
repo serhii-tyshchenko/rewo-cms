@@ -10,6 +10,6 @@ export const CATEGORIES_DEFAULT_QUERY_PARAMS = {
   order: 'asc',
   orderby: 'id',
   page: 1,
-  per_page: 50,
+  per_page: 100,
   search: '',
 };

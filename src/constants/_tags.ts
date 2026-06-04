@@ -24,6 +24,6 @@ export const TAGS_DEFAULT_QUERY_PARAMS: TListTagsQueryParams = {
   order: 'asc',
   orderby: 'id',
   page: 1,
-  per_page: 50,
+  per_page: 100,
   search: '',
 };
