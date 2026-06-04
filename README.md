@@ -73,6 +73,30 @@ To run this project successfully, the target WordPress installation should provi
 
 If your WordPress setup does not expose the JWT route by default, you will need a plugin or custom backend implementation that provides it.
 
+## Exposing Meta Fields in API Responses
+
+By default, WordPress custom post meta fields (post meta) are not exposed in REST API responses. To make meta fields visible and accessible to the frontend, you must explicitly register them in your WordPress `functions.php` file.
+
+Use the `register_post_meta()` function to expose meta fields:
+
+```php
+add_action( 'init', function() {
+    register_post_meta(
+        'post', // Post type
+        'your_meta_field_name', // Meta key
+        array(
+            'type' => 'string', // or 'number', 'boolean', etc.
+            'single' => true, // Single value or array of values
+            'show_in_rest' => true, // **Required to expose in REST API**
+        )
+    );
+} );
+```
+
+Without `'show_in_rest' => true`, the meta field will not appear in API responses even if it exists in the database. Apply this pattern for each custom meta field you need to access from this frontend.
+
+For more details, see [WordPress register_post_meta documentation](https://developer.wordpress.org/reference/functions/register_post_meta/).
+
 ## Quickstart
 
 1. Install dependencies
