@@ -131,6 +131,7 @@
   "replace": "Замінити",
   "replaceWith": "Замінити на",
   "retrievePostError": "Не вдалося отримати запис",
+  "retrievePostMetaFieldsError": "Не вдалося отримати мета-поля запису",
   "role": "Роль",
   "roles": {
     "administrator": "Адміністратор",

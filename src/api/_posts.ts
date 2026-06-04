@@ -8,6 +8,7 @@ import { TListPostsQueryParams, TPost } from '@types';
 import { AUTH_HEADERS } from './constants';
 import {
   formatListPostsResponse,
+  formatRetrievePostMetaFieldsResponse,
   formatRetrievePostResponse,
 } from './formatters';
 import { extractError, hasError, toQueryString } from './utils';
@@ -58,7 +59,26 @@ export const retrievePost = async (id: number) => {
       throw new Error(extractError(errorData));
     }
     const data = await response.json();
+
     return formatRetrievePostResponse(data);
+  } catch (error) {
+    throw new Error(extractError(error as Error));
+  }
+};
+
+export const retrievePostMetaFields = async () => {
+  try {
+    const response = await fetch(BASE_URL, {
+      method: 'OPTIONS',
+      headers: AUTH_HEADERS,
+    });
+    if (hasError(response)) {
+      const errorData = await response.json();
+      throw new Error(extractError(errorData));
+    }
+    const data = await response.json();
+
+    return formatRetrievePostMetaFieldsResponse(data);
   } catch (error) {
     throw new Error(extractError(error as Error));
   }

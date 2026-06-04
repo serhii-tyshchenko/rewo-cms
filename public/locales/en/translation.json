@@ -128,6 +128,7 @@
   "replace": "Replace",
   "replaceWith": "Replace with",
   "retrievePostError": "Failed to fetch post",
+  "retrievePostMetaFieldsError": "Failed to fetch post meta fields",
   "role": "Role",
   "roles": {
     "administrator": "Administrator",

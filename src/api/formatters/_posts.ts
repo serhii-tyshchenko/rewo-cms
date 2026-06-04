@@ -39,3 +39,16 @@ export const formatRetrievePostResponse = (
   meta: response.meta,
   tags: response.tags,
 });
+
+export const formatRetrievePostMetaFieldsResponse = (response: {
+  schema: {
+    properties: {
+      meta: {
+        properties: Record<string, { type: string }>;
+      };
+    };
+  };
+}) => {
+  const metaFields = response.schema.properties.meta.properties ?? {};
+  return Object.entries(metaFields).map(([name]) => name);
+};

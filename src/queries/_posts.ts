@@ -10,6 +10,7 @@ import {
   removePost,
   removePosts,
   retrievePost,
+  retrievePostMetaFields,
   updatePost,
 } from '@api';
 
@@ -24,6 +25,7 @@ import { validateId } from '@utils';
 
 const LIST_POSTS_QUERY_KEY = 'list-posts';
 const RETRIEVE_POST_QUERY_KEY = 'retrieve-post';
+const RETRIEVE_POST_META_FIELDS_QUERY_KEY = 'retrieve-post-meta-fields';
 
 export const useAddPost = () => {
   const dispatch = useDispatch();
@@ -107,6 +109,30 @@ export const useRetrievePost = (id: number) => {
     refetch,
     isFetching,
     dataUpdatedAt,
+  };
+};
+
+export const useRetrievePostMetaFields = () => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const { isLoading, data, refetch, isFetching } = useQuery(
+    [RETRIEVE_POST_META_FIELDS_QUERY_KEY],
+    () => retrievePostMetaFields(),
+    {
+      refetchOnWindowFocus: false,
+      onError: (error: string) => {
+        dispatch(doAddErrorNotification(t('retrievePostMetaFieldsError')));
+        console.error(error);
+      },
+    },
+  );
+
+  return {
+    isLoading,
+    data,
+    refetch,
+    isFetching,
   };
 };
 
