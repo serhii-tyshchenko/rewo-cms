@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { isEqual } from 'lodash-es';
@@ -11,7 +11,7 @@ import { ROUTE } from '@constants';
 
 import { useTitle } from '@hooks';
 
-import { useAddPost } from '@queries';
+import { useAddPost, useRetrievePostMetaFields } from '@queries';
 
 import { cleanObject, generateSlug } from '@utils';
 
@@ -24,6 +24,21 @@ function PostAdd() {
   const [formData, setFormData] = useState(INITIAL_STATE);
 
   const { onAddPost, isAdding } = useAddPost();
+
+  const { data: metaFields } = useRetrievePostMetaFields();
+
+  useEffect(() => {
+    if (!metaFields) {
+      return;
+    }
+    setFormData((prev) => ({
+      ...prev,
+      meta: metaFields.reduce(
+        (acc, field) => ({ ...acc, [field]: '' }),
+        formData.meta || {},
+      ),
+    }));
+  }, [metaFields]);
 
   const handleSubmit = useCallback(() => {
     const { title, slug, content, categories, meta, excerpt, tags } =
