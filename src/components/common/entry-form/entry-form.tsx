@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -72,12 +72,18 @@ function EntryForm(props: IProps) {
 
   const categoryId = first(categories) ?? '';
 
-  // const metaFieldsData = useMemo(
-  //   () => (meta && moduleId ? getMetaFieldsData(moduleId, meta) : []),
-  //   [meta, moduleId],
-  // );
-
-  const metaFieldsData = [];
+  const metaFieldsData = useMemo(
+    () =>
+      meta
+        ? Object.entries(meta)
+            .map(([name, value]) => ({
+              name,
+              value: String(value),
+            }))
+            .sort((a, b) => a.name.localeCompare(b.name))
+        : [],
+    [meta],
+  );
 
   const handleChange = useCallback(
     (
@@ -196,7 +202,6 @@ function EntryForm(props: IProps) {
           onClick={handleBottomPanelCollapse}
         />
         <BottomPanel collapsed={isBottomPanelCollapsed}>
-          <EntryMetaFields data={metaFieldsData} onChange={handleMetaChange} />
           <Textarea
             label={t('excerpt')}
             name="excerpt"
@@ -207,6 +212,7 @@ function EntryForm(props: IProps) {
               height: '100px',
             }}
           />
+          <EntryMetaFields data={metaFieldsData} onChange={handleMetaChange} />
         </BottomPanel>
       </LeftPanel>
       <CollapseButton
