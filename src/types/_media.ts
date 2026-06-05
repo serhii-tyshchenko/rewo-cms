@@ -37,4 +37,5 @@ export type TListMediaQueryParams = {
   search?: string;
   order?: 'asc' | 'desc';
   orderby?: 'id';
+  _fields?: string;
 };

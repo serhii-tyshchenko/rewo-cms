@@ -29,4 +29,5 @@ export type TListCategoriesQueryParams = {
   parent?: number;
   per_page?: number;
   search?: string;
+  _fields?: string;
 };

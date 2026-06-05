@@ -24,4 +24,5 @@ export type TListTagsQueryParams = {
   page?: number;
   per_page?: number;
   search?: string;
+  _fields?: string;
 };

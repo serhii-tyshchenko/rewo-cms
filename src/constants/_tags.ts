@@ -1,4 +1,4 @@
-import { TListTagsQueryParams } from '@types';
+import type { TListTagsQueryParams } from '@types';
 
 import { generateSortingConfig } from '@utils';
 
@@ -26,4 +26,5 @@ export const TAGS_DEFAULT_QUERY_PARAMS: TListTagsQueryParams = {
   page: 1,
   per_page: 100,
   search: '',
+  _fields: 'id,name,count,description,slug',
 };
