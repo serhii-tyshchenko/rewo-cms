@@ -7,7 +7,7 @@ import {
   renderLinkCell,
 } from '@components/ui/table/cells';
 
-import { API_ROOT_URL, ROUTE } from '@constants';
+import { ROUTE } from '@constants';
 
 import { TMedia, TTableColumnConfig } from '@types';
 
@@ -19,6 +19,9 @@ export const getColumns = (
     key: 'id',
     title: t('id'),
     cellClassName: 'text-sm',
+    style: {
+      width: '80px',
+    },
   },
   {
     key: 'title',

@@ -17,6 +17,9 @@ export const getColumns = (
     key: 'id',
     title: t('id'),
     cellClassName: 'text-sm',
+    style: {
+      width: '80px',
+    },
   },
   {
     key: 'content',
