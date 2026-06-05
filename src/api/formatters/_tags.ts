@@ -17,7 +17,7 @@ export const formatListTagsResponse = (
             description: item.description,
             id: item.id,
             name: item.name,
-            slug: item.slug,
+            slug: decodeURIComponent(item.slug),
           }),
         )
         .sort((a, b) => a.name.localeCompare(b.name))
