@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom';
+
 import { TFunction } from 'i18next';
 
 import { Button, IconButton, IconLink } from '@components/ui';
+
+import { ROUTE } from '@constants/_common';
 
 import { TCategory, TTableColumnConfig } from '@types';
 
@@ -45,6 +49,11 @@ export const getColumns = (
   },
   {
     cellClassName: 'text-sm',
+    cell: (row) => (
+      <Link key={row.id} to={`${ROUTE.POSTS}?categories=${row.id}`}>
+        {row.count}
+      </Link>
+    ),
     key: 'count',
     title: t('count'),
     style: {
