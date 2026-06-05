@@ -8,8 +8,6 @@ export const getModalLabels = (action: TCategoryAction, t: TFunction) => {
       return { modalTitle: t('editCategory'), confirmBtnTitle: t('save') };
     case 'add':
       return { modalTitle: t('addCategory'), confirmBtnTitle: t('add') };
-    case 'clone':
-      return { modalTitle: t('cloneCategory'), confirmBtnTitle: t('confirm') };
     default:
       return { modalTitle: t('editCategory'), confirmBtnTitle: t('save') };
   }

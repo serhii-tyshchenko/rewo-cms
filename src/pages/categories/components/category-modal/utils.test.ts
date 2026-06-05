@@ -21,13 +21,6 @@ describe('(Function) getModalLabels', () => {
     });
   });
 
-  it('should return clone labels for clone action', () => {
-    expect(getModalLabels('clone', t)).toEqual({
-      modalTitle: 'cloneCategory',
-      confirmBtnTitle: 'confirm',
-    });
-  });
-
   it('should fallback to edit labels for delete action', () => {
     expect(getModalLabels('delete', t)).toEqual({
       modalTitle: 'editCategory',
