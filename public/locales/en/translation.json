@@ -18,6 +18,7 @@
   "categories": "Categories",
   "category": "Category",
   "categoryAddedSuccessfully": "Category added successfully",
+  "categoryDescription": "Category description",
   "categoryName": "Category name",
   "categoryRemovedSuccessfully": "Category removed successfully",
   "categorySlug": "Category slug",
