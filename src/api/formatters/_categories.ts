@@ -15,7 +15,7 @@ export const formatListCategoriesResponse = (
           id: item.id,
           name: item.name,
           count: item.count,
-          slug: item.slug,
+          slug: decodeURIComponent(item.slug),
           description: item.description,
           link: item.link,
           parent: item.parent,
