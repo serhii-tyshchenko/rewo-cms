@@ -60,9 +60,7 @@ function CategoryModal(props: IProps) {
 
   const isSubmitDisabled = useMemo(
     () =>
-      some([formData.name, formData.slug], isEmpty) ||
-      !formData.parent ||
-      isEqual(formData, data),
+      some([formData.name, formData.slug], isEmpty) || isEqual(formData, data),
     [formData, data],
   );
 
