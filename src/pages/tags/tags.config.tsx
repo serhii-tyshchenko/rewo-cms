@@ -40,7 +40,9 @@ export const getColumns = (
     key: 'count',
     title: t('count'),
     cellClassName: 'text-sm',
-    cell: (row) => <Link to={`${ROUTE.POSTS}?tags=${row.id}`}>{row.name}</Link>,
+    cell: (row) => (
+      <Link to={`${ROUTE.POSTS}?tags=${row.id}`}>{row.count}</Link>
+    ),
     style: {
       width: '200px',
     },
