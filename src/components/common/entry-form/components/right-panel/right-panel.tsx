@@ -68,7 +68,7 @@ function RightPanel(props: IProps) {
     CATEGORIES_DEFAULT_QUERY_PARAMS,
   );
 
-  const className = getClassName('flex flex-col', {
+  const className = getClassName('flex flex-col shrink-0', {
     hidden: collapsed,
   });
 
