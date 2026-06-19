@@ -7,10 +7,7 @@ import { first, isEmpty } from 'lodash-es';
 import { Checkbox, FormGroup, Input, Textarea } from '@components/ui';
 
 import { doUpdateSettings } from '@store/actions';
-import {
-  selectBottomPanelCollapsed,
-  selectRightPanelCollapsed,
-} from '@store/selectors';
+import { selectSettings } from '@store/selectors';
 
 import { TPostFormData } from '@types';
 
@@ -67,8 +64,8 @@ function EntryForm(props: IProps) {
     tags,
   } = data;
 
-  const isRightPanelCollapsed = useSelector(selectRightPanelCollapsed);
-  const isBottomPanelCollapsed = useSelector(selectBottomPanelCollapsed);
+  const { textEditorMode, isRightPanelCollapsed, isBottomPanelCollapsed } =
+    useSelector(selectSettings);
 
   const categoryId = first(categories) ?? '';
 
@@ -194,6 +191,7 @@ function EntryForm(props: IProps) {
           className={editorClassName}
           onChange={handleContentChange}
           value={content}
+          defaultMode={textEditorMode}
         />
         <CollapseButton
           className="relative left-1/2"

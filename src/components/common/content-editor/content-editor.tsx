@@ -8,7 +8,6 @@ import { Tabs, Textarea } from '@components/ui';
 import { countWords, getClassName, getSelection } from '@utils';
 
 import {
-  CustomWrapperModal,
   FindAndReplacePanel,
   InsertImageModal,
   SnippetsModal,
@@ -24,10 +23,16 @@ interface IProps {
   value?: string;
   onChange?: (value: string) => void;
   className?: string;
+  defaultMode?: 'visual' | 'text' | 'text+preview';
 }
 
 function ContentEditor(props: IProps) {
-  const { value = '', onChange = noop, className = '' } = props;
+  const {
+    value = '',
+    onChange = noop,
+    className = '',
+    defaultMode = 'visual',
+  } = props;
   const { t } = useTranslation();
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -50,7 +55,12 @@ function ContentEditor(props: IProps) {
     visualEditorToolbarConfig,
     isFullScreen,
     isPreviewMode,
-  } = useContentEditor({ value, onChange, textareaRef });
+  } = useContentEditor({
+    value,
+    onChange,
+    textareaRef,
+    isPreviewEnabled: defaultMode === 'text+preview',
+  });
 
   const componentClassName = getClassName(
     NAME_SPACE,
@@ -60,6 +70,7 @@ function ContentEditor(props: IProps) {
   const textEditorClassName = getClassName(`${NAME_SPACE}-textarea`, {
     [`${NAME_SPACE}-textarea--with-preview`]: isPreviewMode,
   });
+  const isVisualMode = defaultMode === 'visual';
 
   return (
     <>
@@ -67,6 +78,7 @@ function ContentEditor(props: IProps) {
         labels={[t('textEditor.visual'), t('textEditor.text')]}
         tabsPosition="right"
         className={componentClassName}
+        activeTab={isVisualMode ? 0 : 1}
       >
         <div className="flex flex-col grow">
           <Toolbar config={visualEditorToolbarConfig} />

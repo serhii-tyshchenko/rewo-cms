@@ -1,12 +1,16 @@
 /* eslint-disable default-param-last */
+import { TSettingsState } from '@types';
+
 import { UPDATE_SETTINGS } from '../action-types';
 
-const initialState = {
+const initialState: TSettingsState = {
   language: 'en',
   theme: 'light',
   isNavCollapsed: false,
   isRightPanelCollapsed: false,
   isBottomPanelCollapsed: false,
+  textEditorPreviewEnabled: false,
+  textEditorMode: 'visual',
 };
 
 const settingsReducer = (state = initialState, action) => {

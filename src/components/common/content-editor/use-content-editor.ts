@@ -15,18 +15,20 @@ interface IUseContentEditorParams {
   onChange: (value: string) => void;
   value: string;
   textareaRef: React.RefObject<HTMLTextAreaElement>;
+  isPreviewEnabled?: boolean;
 }
 
 const useContentEditor = ({
   onChange,
   value,
   textareaRef,
+  isPreviewEnabled = false,
 }: IUseContentEditorParams) => {
   const [isSymbolPickerOpen, toggleSymbolPicker] = useToggle();
   const [isFindAndReplaceOpen, toggleFindAndReplace] = useToggle();
   const [isTableConstructorOpen, toggleTableConstructor] = useToggle();
   const [isFullScreen, toggleFullScreen] = useToggle();
-  const [isPreviewMode, togglePreviewMode] = useToggle();
+  const [isPreviewMode, togglePreviewMode] = useToggle(isPreviewEnabled);
   const [isSnippetsModalOpen, toggleSnippetsModal] = useToggle();
   const [isInsertImageModalOpen, toggleInsertImageModal] = useToggle();
   const { t } = useTranslation();

@@ -6,5 +6,6 @@ export * from './posts';
 export * from './home';
 export * from './log-in';
 export * from './media';
+export * from './settings';
 export * from './tags';
 export * from './users';

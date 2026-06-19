@@ -6,7 +6,7 @@ import { SuspenseFallback } from '@components/common';
 
 import { ROUTE } from '@constants';
 
-import { useTheme } from '@hooks';
+import { useLanguage, useTheme } from '@hooks';
 
 import { selectUserData } from '@store/selectors';
 
@@ -39,6 +39,9 @@ const UsersPage = lazy(() =>
 const CommentsPage = lazy(() =>
   import('@pages').then((m) => ({ default: m.CommentsPage })),
 );
+const SettingsPage = lazy(() =>
+  import('@pages').then((m) => ({ default: m.SettingsPage })),
+);
 const LogIn = lazy(() => import('@pages').then((m) => ({ default: m.LogIn })));
 
 function App() {
@@ -47,6 +50,7 @@ function App() {
   const isAllowed = isLogged && isTokenValid;
 
   useTheme();
+  useLanguage();
 
   return (
     <Suspense fallback={<SuspenseFallback />}>
@@ -61,6 +65,7 @@ function App() {
           <Route path={ROUTE.MEDIA} element={<MediaPage />} />
           <Route path={ROUTE.USERS} element={<UsersPage />} />
           <Route path={ROUTE.COMMENTS} element={<CommentsPage />} />
+          <Route path={ROUTE.SETTINGS} element={<SettingsPage />} />
           <Route path="*" element={<Navigate to={ROUTE.HOME} replace />} />
         </Route>
         <Route

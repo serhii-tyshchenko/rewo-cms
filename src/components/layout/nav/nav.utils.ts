@@ -38,4 +38,9 @@ export const getNavLinks = (t: TFunction) => [
     title: t('page.comments'),
     icon: 'comment',
   },
+  {
+    route: ROUTE.SETTINGS,
+    title: t('page.settings'),
+    icon: 'cog',
+  },
 ];

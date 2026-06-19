@@ -9,6 +9,7 @@ export const ROUTE = {
   HOME: '/',
   LOGIN: '/login',
   MEDIA: '/media',
+  SETTINGS: '/settings',
   TAGS: '/tags',
   USERS: '/users',
 };
@@ -20,8 +21,8 @@ export const PORTAL_ROOT = document.getElementById('portal-root')!;
 export const LS_KEY_NAME = APP_NAME;
 
 export const LANGUAGES = [
-  { value: 'en', label: 'EN' },
-  { value: 'uk', label: 'UK' },
+  { value: 'en', label: 'English' },
+  { value: 'uk', label: 'Українська' },
 ];
 
 export const BATCH_ENTRIES_LIMIT = 25;

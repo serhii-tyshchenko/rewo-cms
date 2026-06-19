@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CollapseButton } from '@components/common';
 
 import { doUpdateSettings } from '@store/actions';
-import { selectNavCollapsed } from '@store/selectors';
+import { selectSettings } from '@store/selectors';
 
 import { getClassName } from '@utils';
 
@@ -21,7 +21,7 @@ function Nav() {
 
   const links = getNavLinks(t);
 
-  const isNavCollapsed = useSelector(selectNavCollapsed);
+  const { isNavCollapsed } = useSelector(selectSettings);
   const className = getClassName(NAME_SPACE, {
     [`${NAME_SPACE}--collapsed`]: isNavCollapsed,
   });
