@@ -85,6 +85,7 @@
     "home": "Home",
     "login": "Login",
     "media": "Media",
+    "settings": "Settings",
     "tags": "Tags",
     "users": "Users"
   },
@@ -264,7 +265,19 @@
     },
     "selectSymbol": "Select symbol",
     "text": "Text",
+    "textAndPreview": "Text and preview",
     "visual": "Visual"
+  },
+  "textEditorMode": "Text editor mode",
+  "theme": "Theme",
+  "themes": {
+    "dark": "Dark",
+    "light": "Light",
+    "darkBlue": "Dark blue",
+    "lightBlue": "Light blue",
+    "darkRed": "Dark red",
+    "lightRed": "Light red",
+    "system": "System"
   },
   "title": "Title",
   "total": "Total",
