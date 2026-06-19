@@ -4,7 +4,7 @@ import { Loader } from '@components/common';
 
 import { APP_NAME } from '@constants';
 
-import { AuthBtn, LanguageSelector, ThemeToggler } from './components';
+import { AuthBtn } from './components';
 import './header.styles.scss';
 
 const NAME_SPACE = 'header';
@@ -17,8 +17,6 @@ function Header() {
       </Link>
       <Loader />
       <div className="flex items-center gap-2">
-        <LanguageSelector />
-        <ThemeToggler />
         <AuthBtn />
       </div>
     </header>

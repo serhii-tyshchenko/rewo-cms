@@ -1,14 +1,18 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectTheme } from '@store/selectors';
+import { selectSettings } from '@store/selectors';
+
+import { useSystemTheme } from './use-system-theme';
 
 const useTheme = () => {
-  const theme = useSelector(selectTheme);
+  const { theme } = useSelector(selectSettings);
+  const systemTheme = useSystemTheme();
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    const resolvedTheme = theme === 'system' ? systemTheme : theme;
+    document.documentElement.setAttribute('data-theme', resolvedTheme);
+  }, [theme, systemTheme]);
 
   return theme;
 };
