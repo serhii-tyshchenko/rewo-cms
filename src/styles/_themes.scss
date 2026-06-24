@@ -2,7 +2,7 @@
 
 :root {
   --color-primary: #{$color-black};
-  --color-secondary: #{$color-mishka};
+  --color-secondary: #747474;
   --color-accent: #{$color-dodger-blue};
   --color-error: #{$color-red};
   --color-spelling-error: #{$color-red};
@@ -15,7 +15,7 @@
 
 [data-theme="light"] {
   --color-primary: #{$color-black};
-  --color-secondary: #{$color-mishka};
+  --color-secondary: #747474;
   --color-accent: #{$color-dodger-blue};
   --color-error: #{$color-red};
   --color-spelling-error: #{$color-red};
@@ -28,7 +28,7 @@
 
 [data-theme="dark"] {
   --color-primary: #{$color-white};
-  --color-secondary: #{$color-mishka};
+  --color-secondary: #9f9d9d;
   --color-accent: #{$color-dodger-blue};
   --color-error: #{$color-red};
   --color-spelling-error: #{$color-red};
@@ -38,6 +38,7 @@
   --background-controls: #{$color-cape-cod};
   --color-scheme: dark;
 }
+
 [data-theme="light-blue"] {
   --color-primary: #0b132b;
   --color-secondary: #3a506b;

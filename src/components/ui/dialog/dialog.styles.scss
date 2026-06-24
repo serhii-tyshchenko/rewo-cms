@@ -32,8 +32,7 @@
   }
 
   &__backdrop {
-    backdrop-filter: blur(6px);
-    background: #000c;
+    backdrop-filter: blur(8px) brightness(0.5);
     height: 100vh;
     left: 0;
     position: fixed;
