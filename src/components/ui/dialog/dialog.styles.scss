@@ -9,8 +9,9 @@
   color: var(--color-primary);
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
   left: 50%;
-  max-height: 480px;
+  max-height: 640px;
   max-width: 480px;
   min-height: 320px;
   padding: 1rem;
@@ -46,7 +47,6 @@
     border-bottom: 1px solid var(--background-controls);
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     position: relative;
   }
@@ -62,10 +62,6 @@
     flex-grow: 1;
     overflow: auto;
     scrollbar-width: none;
-
-    &+#{$self}__footer {
-      margin-top: 1.5rem;
-    }
   }
 
   &__footer {

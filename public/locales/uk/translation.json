@@ -270,10 +270,14 @@
       "tableConstructor": "Конструктор таблиць",
       "underline": "Підкреслений"
     },
+    "decoding": "Декодування",
+    "height": "Висота",
+    "loading": "Завантаження",
     "selectSymbol": "Виберіть символ",
     "text": "Текстовий",
     "textAndPreview": "Текст і прев'ю",
-    "visual": "Візуальний"
+    "visual": "Візуальний",
+    "width": "Ширина"
   },
   "textEditorMode": "Режим текстового редактора",
   "theme": "Тема",

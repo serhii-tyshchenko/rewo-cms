@@ -1,9 +1,10 @@
-export const generateImage = (config) => {
-  const { imageUrl, alt, classes } = config;
-  const srcAttr = `src="${imageUrl}"`;
-  const altAttr = alt ? `alt="${alt}"` : '';
-  const classesAttr = classes ? `class="${classes}"` : '';
-  const attributes = [srcAttr, altAttr, classesAttr].filter(Boolean).join(' ');
+import { TInsertImageConfig } from './insert-image-modal.types';
+
+export const generateImage = (config: TInsertImageConfig) => {
+  const attributes = Object.entries(config)
+    .filter(([, value]) => Boolean(value))
+    .map(([key, value]) => `${key}="${value}"`)
+    .join(' ');
 
   return `<img ${attributes} />`;
 };

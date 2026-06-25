@@ -263,10 +263,14 @@
       "tableConstructor": "Table constructor",
       "underline": "Underline"
     },
+    "decoding": "Decoding",
+    "height": "Height",
+    "loading": "Loading",
     "selectSymbol": "Select symbol",
     "text": "Text",
     "textAndPreview": "Text and preview",
-    "visual": "Visual"
+    "visual": "Visual",
+    "width": "Width"
   },
   "textEditorMode": "Text editor mode",
   "theme": "Theme",
@@ -286,5 +290,5 @@
   "updatePostSuccess": "Post updated successfully.",
   "usernameOrEmail": "Username or Email",
   "viewOnSite": "View on site",
-  "warning": "Warning"
+  "warning": "Warning",
 }
