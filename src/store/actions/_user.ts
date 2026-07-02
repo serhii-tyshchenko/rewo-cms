@@ -4,12 +4,13 @@ import { extractError, hasError } from '@api/utils';
 
 import { ERROR_MESSAGE, USER_ROLE } from '@constants';
 
+import { toast } from '@services/notification-store';
+
 import {
   actionApiRequestEnded,
   actionApiRequestStarted,
 } from '../action-creators';
 import { LOG_IN, LOG_OUT } from '../action-types';
-import { doAddErrorNotification } from './_notifications';
 
 const actionLogIn = (response) => ({
   type: LOG_IN,
@@ -36,7 +37,7 @@ export const doLogIn =
 
       dispatch(actionLogIn(logInresponse));
     } catch (error) {
-      dispatch(doAddErrorNotification(extractError(error as Error)));
+      toast.error(extractError(error as Error));
     } finally {
       dispatch(actionApiRequestEnded());
     }

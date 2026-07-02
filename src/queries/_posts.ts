@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { useDispatch } from 'react-redux';
 
 import {
   addPost,
@@ -14,10 +13,7 @@ import {
   updatePost,
 } from '@api';
 
-import {
-  doAddErrorNotification,
-  doAddSuccessNotification,
-} from '@store/actions';
+import { toast } from '@services/notification-store';
 
 import { TListPostsData, TListPostsQueryParams, TPost } from '@types';
 
@@ -28,21 +24,16 @@ const RETRIEVE_POST_QUERY_KEY = 'retrieve-post';
 const RETRIEVE_POST_META_FIELDS_QUERY_KEY = 'retrieve-post-meta-fields';
 
 export const useAddPost = () => {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { mutate: onAddPost, isLoading: isAdding } = useMutation(
     (data) => addPost(data),
     {
       onSuccess: (response) => {
-        dispatch(
-          doAddSuccessNotification(
-            t('postAddedSuccess', { link: response.link }),
-          ),
-        );
+        toast.success(t('postAddedSuccess', { link: response.link }));
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('postAddedError')));
+        toast.error(t('postAddedError'));
         console.error(error);
       },
     },
@@ -52,7 +43,6 @@ export const useAddPost = () => {
 };
 
 export const useListPosts = (queryParams: TListPostsQueryParams) => {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const {
@@ -66,7 +56,7 @@ export const useListPosts = (queryParams: TListPostsQueryParams) => {
     {
       refetchOnWindowFocus: false,
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('listPostsError')));
+        toast.error(t('listPostsError'));
         console.error(error);
       },
     },
@@ -86,7 +76,6 @@ export const useListPosts = (queryParams: TListPostsQueryParams) => {
 };
 
 export const useRetrievePost = (id: number) => {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const validId = validateId(id);
@@ -97,7 +86,7 @@ export const useRetrievePost = (id: number) => {
       enabled: validId,
       refetchOnWindowFocus: false,
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('retrievePostError')));
+        toast.error(t('retrievePostError'));
         console.error(error);
       },
     },
@@ -113,7 +102,6 @@ export const useRetrievePost = (id: number) => {
 };
 
 export const useRetrievePostMetaFields = () => {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { isLoading, data, refetch, isFetching } = useQuery(
@@ -122,7 +110,7 @@ export const useRetrievePostMetaFields = () => {
     {
       refetchOnWindowFocus: false,
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('retrievePostMetaFieldsError')));
+        toast.error(t('retrievePostMetaFieldsError'));
         console.error(error);
       },
     },
@@ -138,7 +126,6 @@ export const useRetrievePostMetaFields = () => {
 
 export const useUpdatePost = () => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { mutate: onUpdatePost, isLoading: isUpdating } = useMutation(
@@ -146,10 +133,10 @@ export const useUpdatePost = () => {
     {
       onSuccess: async () => {
         await queryClient.invalidateQueries(RETRIEVE_POST_QUERY_KEY);
-        dispatch(doAddSuccessNotification(t('updatePostSuccess')));
+        toast.success(t('updatePostSuccess'));
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('updatePostError')));
+        toast.error(t('updatePostError'));
         console.error(error);
       },
     },
@@ -160,7 +147,6 @@ export const useUpdatePost = () => {
 
 export const useQuickUpdatePost = (cbSuccess?: () => void) => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { mutate: onUpdate, isLoading: isUpdating } = useMutation(
@@ -169,10 +155,10 @@ export const useQuickUpdatePost = (cbSuccess?: () => void) => {
       onSuccess: async () => {
         cbSuccess?.();
         await queryClient.invalidateQueries(LIST_POSTS_QUERY_KEY);
-        dispatch(doAddSuccessNotification(t('updatePostSuccess')));
+        toast.success(t('updatePostSuccess'));
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('updatePostError')));
+        toast.error(t('updatePostError'));
         console.error(error);
       },
     },
@@ -183,20 +169,19 @@ export const useQuickUpdatePost = (cbSuccess?: () => void) => {
 
 export const useRemovePost = (withRefetch = false) => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { mutateAsync: onRemovePost, isLoading } = useMutation(
     ({ id, force }: { id: number; force: boolean }) => removePost(id, force),
     {
       onSuccess: () => {
-        dispatch(doAddSuccessNotification(t('removePostSuccess')));
+        toast.success(t('removePostSuccess'));
         if (withRefetch) {
           queryClient.invalidateQueries(LIST_POSTS_QUERY_KEY);
         }
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('removePostError')));
+        toast.error(t('removePostError'));
         console.error(error);
       },
     },
@@ -209,7 +194,6 @@ export const useRemovePostWithRefetch = () => useRemovePost(true);
 
 export const useRemovePosts = () => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { mutateAsync: onRemovePosts, isLoading } = useMutation(
@@ -217,11 +201,11 @@ export const useRemovePosts = () => {
       removePosts(selectedItems),
     {
       onSuccess: () => {
-        dispatch(doAddSuccessNotification(t('removePostsSuccess')));
+        toast.success(t('removePostsSuccess'));
         queryClient.invalidateQueries(LIST_POSTS_QUERY_KEY);
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('removePostsError')));
+        toast.error(t('removePostsError'));
         console.error(error);
       },
     },

@@ -1,14 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { useDispatch } from 'react-redux';
 
 import { addTag, listTags, removeTag, updateTag } from '@api';
 
 import { TAGS_DEFAULT_QUERY_PARAMS } from '@constants/_tags';
 
-import {
-  doAddErrorNotification,
-  doAddSuccessNotification,
-} from '@store/actions';
+import { toast } from '@services/notification-store';
 
 import { TListTagsData, TListTagsQueryParams, TTag } from '@types';
 
@@ -17,18 +13,18 @@ const LIST_ALL_TAGS_QUERY_KEY = 'list-all-tags';
 
 export const useAddTag = (closeModal: () => void) => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
 
   const { mutate: onAddTag, isLoading: isAdding } = useMutation(
     (newTag: Partial<TTag>) => addTag(newTag),
     {
       onSuccess: () => {
         closeModal();
-        dispatch(doAddSuccessNotification('Tag added successfully'));
+        // TODO: Use i18n for this message
+        toast.success('Tag added successfully');
         queryClient.invalidateQueries(LIST_TAGS_QUERY_KEY);
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(error || 'Failed to add tag'));
+        toast.error(error || 'Failed to add tag');
       },
     },
   );
@@ -37,14 +33,13 @@ export const useAddTag = (closeModal: () => void) => {
 };
 
 export const useListTags = (queryParams: TListTagsQueryParams) => {
-  const dispatch = useDispatch();
   const { isLoading, data, refetch, isFetching } = useQuery(
     [LIST_TAGS_QUERY_KEY, queryParams],
     () => listTags(queryParams),
     {
       refetchOnWindowFocus: false,
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(error));
+        toast.error(error || 'Error fetching tags');
       },
     },
   );
@@ -62,14 +57,13 @@ export const useListTags = (queryParams: TListTagsQueryParams) => {
 };
 
 export const useListAllTags = () => {
-  const dispatch = useDispatch();
   const { isLoading, data, refetch, isFetching } = useQuery(
     [LIST_ALL_TAGS_QUERY_KEY],
     () => listTags(TAGS_DEFAULT_QUERY_PARAMS),
     {
       refetchOnWindowFocus: false,
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(error));
+        toast.error(error || 'Error fetching tags');
       },
     },
   );
@@ -84,18 +78,19 @@ export const useListAllTags = () => {
 
 export const useUpdateTag = (cbSuccess?: () => void) => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
 
   const { mutate: onUpdateTag, isLoading: isUpdating } = useMutation(
     (tag: Partial<TTag>) => updateTag(tag),
     {
       onSuccess: () => {
         cbSuccess?.();
-        dispatch(doAddSuccessNotification('Tag updated successfully'));
+        // TODO: Use i18n for this message
+        toast.success('Tag updated successfully');
         queryClient.invalidateQueries(LIST_TAGS_QUERY_KEY);
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(error || 'Failed to update tag'));
+        // TODO: Use i18n for this message
+        toast.error(error || 'Failed to update tag');
       },
     },
   );
@@ -105,15 +100,16 @@ export const useUpdateTag = (cbSuccess?: () => void) => {
 
 export const useRemoveTag = () => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
 
   const { mutate: onRemoveTag } = useMutation((id: number) => removeTag(id), {
     onSuccess: () => {
-      dispatch(doAddSuccessNotification('Tag removed successfully'));
+      // TODO: Use i18n for this message
+      toast.success('Tag removed successfully');
       queryClient.invalidateQueries(LIST_TAGS_QUERY_KEY);
     },
     onError: (error: string) => {
-      dispatch(doAddErrorNotification(error || 'Failed to remove tag'));
+      // TODO: Use i18n for this message
+      toast.error(error || 'Failed to remove tag');
     },
   });
 

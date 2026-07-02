@@ -1,16 +1,14 @@
 import { useQuery } from 'react-query';
-import { useDispatch } from 'react-redux';
 
 import { listUsers } from '@api';
 
-import { doAddErrorNotification } from '@store/actions';
+import { toast } from '@services/notification-store';
 
 import { TListUsersData, TListUsersQueryParams } from '@types';
 
 const LIST_USERS_QUERY_KEY = 'list-users';
 
 export const useListUsers = (queryParams: TListUsersQueryParams) => {
-  const dispatch = useDispatch();
   const {
     isLoading,
     data = [],
@@ -22,7 +20,8 @@ export const useListUsers = (queryParams: TListUsersQueryParams) => {
     {
       refetchOnWindowFocus: false,
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(error));
+        // TODO: Use i18n for this message
+        toast.error(error || 'Error fetching users');
       },
     },
   );

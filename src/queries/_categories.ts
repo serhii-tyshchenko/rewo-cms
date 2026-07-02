@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { useDispatch } from 'react-redux';
 
 import { omit } from 'lodash-es';
 
@@ -13,10 +12,7 @@ import {
   updateCategory,
 } from '@api';
 
-import {
-  doAddErrorNotification,
-  doAddSuccessNotification,
-} from '@store/actions';
+import { toast } from '@services/notification-store';
 
 import {
   TCategory,
@@ -31,7 +27,6 @@ const LIST_CATEGORIES_BY_PARENT_ID_KEY = 'list-categories-by-parent-id';
 
 export const useAddCategory = (closeModal: () => void) => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { mutate: onAddCategory, isLoading: isAdding } = useMutation(
@@ -40,11 +35,11 @@ export const useAddCategory = (closeModal: () => void) => {
     {
       onSuccess: () => {
         closeModal();
-        dispatch(doAddSuccessNotification(t('categoryAddedSuccessfully')));
+        toast.success(t('categoryAddedSuccessfully'));
         queryClient.invalidateQueries(LIST_CATEGORIES_QUERY_KEY);
       },
       onError: (err: string) => {
-        dispatch(doAddErrorNotification(t('failedToAddCategory')));
+        toast.error(t('failedToAddCategory'));
         console.error(err);
       },
     },
@@ -54,14 +49,13 @@ export const useAddCategory = (closeModal: () => void) => {
 };
 
 export const useListCategories = (queryParams: TListCategoriesQueryParams) => {
-  const dispatch = useDispatch();
   const { isLoading, data, refetch, isFetching } = useQuery(
     [LIST_CATEGORIES_QUERY_KEY, queryParams],
     () => listCategories(queryParams),
     {
       refetchOnWindowFocus: false,
       onError: (err: string) => {
-        dispatch(doAddErrorNotification(err));
+        toast.error(err);
       },
     },
   );
@@ -80,15 +74,14 @@ export const useListCategories = (queryParams: TListCategoriesQueryParams) => {
 
 export const useListCategoriesByParentId = (parentId: number) => {
   const validId = validateId(parentId);
-  const dispatch = useDispatch();
   const { isLoading, data } = useQuery(
     [LIST_CATEGORIES_BY_PARENT_ID_KEY, parentId],
     () => (validId ? listCategoriesByParentId(parentId) : undefined),
     {
       refetchOnWindowFocus: false,
       enabled: validId,
-      onError: (error: string) => {
-        dispatch(doAddErrorNotification(error));
+      onError: (err: string) => {
+        toast.error(err);
       },
     },
   );
@@ -107,7 +100,6 @@ export const useListCategoriesByParentId = (parentId: number) => {
 
 export const useUpdateCategory = (closeModal: () => void) => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { mutate: onUpdateCategory, isLoading: isUpdating } = useMutation(
@@ -115,11 +107,11 @@ export const useUpdateCategory = (closeModal: () => void) => {
     {
       onSuccess: () => {
         closeModal();
-        dispatch(doAddSuccessNotification(t('categoryUpdatedSuccessfully')));
+        toast.success(t('categoryUpdatedSuccessfully'));
         queryClient.invalidateQueries(LIST_CATEGORIES_QUERY_KEY);
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(t('failedToUpdateCategory')));
+        toast.error(t('failedToUpdateCategory'));
         console.error(error);
       },
     },
@@ -130,18 +122,17 @@ export const useUpdateCategory = (closeModal: () => void) => {
 
 export const useRemoveCategory = () => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { mutate: onRemoveCategory } = useMutation(
     (id: number) => removeCategory(id),
     {
       onSuccess: () => {
-        dispatch(doAddSuccessNotification(t('categoryRemovedSuccessfully')));
+        toast.success(t('categoryRemovedSuccessfully'));
         queryClient.invalidateQueries(LIST_CATEGORIES_QUERY_KEY);
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(error || t('failedToRemoveCategory')));
+        toast.error(error || t('failedToRemoveCategory'));
         console.error(error);
       },
     },

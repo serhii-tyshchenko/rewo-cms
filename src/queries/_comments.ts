@@ -1,12 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { useDispatch } from 'react-redux';
 
 import { listComments, removeComment } from '@api';
 
-import {
-  doAddErrorNotification,
-  doAddSuccessNotification,
-} from '@store/actions';
+import { toast } from '@services/notification-store';
 
 import {
   TCommentStatus,
@@ -17,7 +13,6 @@ import {
 const LIST_QUERY_KEY = 'list-comments';
 
 export const useCommentsData = (queryParams: TListCommentsQueryParams) => {
-  const dispatch = useDispatch();
   const {
     isLoading,
     data = [],
@@ -26,7 +21,8 @@ export const useCommentsData = (queryParams: TListCommentsQueryParams) => {
   } = useQuery([LIST_QUERY_KEY, queryParams], () => listComments(queryParams), {
     refetchOnWindowFocus: false,
     onError: (error: string) => {
-      dispatch(doAddErrorNotification(error || 'Error fetching comments'));
+      // TODO: Use i18n for this message
+      toast.error(error || 'Error fetching comments');
     },
   });
   const safeData = data ?? {
@@ -45,18 +41,19 @@ export const useCommentsData = (queryParams: TListCommentsQueryParams) => {
 
 export const useRemoveComment = () => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
 
   const { mutate: removeCommentMutate } = useMutation(
     ({ id, status }: { id: number; status: TCommentStatus }) =>
       removeComment(id, status),
     {
       onSuccess: () => {
-        dispatch(doAddSuccessNotification('Comment removed successfully'));
+        // TODO: Use i18n for this message
+        toast.success('Comment removed successfully');
         queryClient.invalidateQueries(LIST_QUERY_KEY);
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(error || 'Error removing comment'));
+        // TODO: Use i18n for this message
+        toast.error(error || 'Error removing comment');
       },
     },
   );

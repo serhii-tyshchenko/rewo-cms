@@ -1,12 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { useDispatch } from 'react-redux';
 
 import { listMedia, removeMedia, retrieveMedia } from '@api';
 
-import {
-  doAddErrorNotification,
-  doAddSuccessNotification,
-} from '@store/actions';
+import { toast } from '@services/notification-store';
 
 import { TListMediaData, TListMediaQueryParams } from '@types';
 
@@ -16,7 +12,6 @@ const LIST_MEDIA_QUERY_KEY = 'list-media';
 const RETRIEVE_MEDIA_QUERY_KEY = 'retrieve-media';
 
 export const useListMedia = (queryParams: TListMediaQueryParams) => {
-  const dispatch = useDispatch();
   const {
     isLoading,
     data = [],
@@ -27,8 +22,8 @@ export const useListMedia = (queryParams: TListMediaQueryParams) => {
     () => listMedia(queryParams),
     {
       refetchOnWindowFocus: false,
-      onError: (error: string) => {
-        dispatch(doAddErrorNotification(error));
+      onError: (err: string) => {
+        toast.error(err || 'Error fetching media');
       },
     },
   );
@@ -48,7 +43,6 @@ export const useListMedia = (queryParams: TListMediaQueryParams) => {
 
 export const useRetrieveMedia = (id: number) => {
   const validId = validateId(id);
-  const dispatch = useDispatch();
   const { isLoading, data, refetch, isFetching, error } = useQuery(
     [RETRIEVE_MEDIA_QUERY_KEY, id],
     () => (validId ? retrieveMedia(id) : undefined),
@@ -56,7 +50,7 @@ export const useRetrieveMedia = (id: number) => {
       enabled: validId,
       refetchOnWindowFocus: false,
       onError: (err: string) => {
-        dispatch(doAddErrorNotification(err));
+        toast.error(err || 'Error retrieving media');
       },
     },
   );
@@ -72,17 +66,18 @@ export const useRetrieveMedia = (id: number) => {
 
 export const useRemoveMedia = () => {
   const queryClient = useQueryClient();
-  const dispatch = useDispatch();
 
   const { mutate: onRemoveMedia } = useMutation(
     (id: number) => removeMedia(id),
     {
       onSuccess: () => {
-        dispatch(doAddSuccessNotification('Media removed successfully'));
+        // TODO: Use i18n for this message
+        toast.success('Media removed successfully');
         queryClient.invalidateQueries(LIST_MEDIA_QUERY_KEY);
       },
       onError: (error: string) => {
-        dispatch(doAddErrorNotification(error));
+        // TODO: Use i18n for this message
+        toast.error(error || 'Error removing media');
       },
     },
   );
