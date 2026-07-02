@@ -24,6 +24,9 @@ export const getColumns = (
   {
     key: 'content',
     title: t('content'),
+    style: {
+      width: '80ch',
+    },
   },
   {
     key: 'date',
