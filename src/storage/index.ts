@@ -12,12 +12,12 @@ const loadState = () => {
   }
 };
 
-const getKey = (key) => {
+const getKey = (key: string) => {
   const state = loadState();
   return state ? state[key] : undefined;
 };
 
-const saveState = (state) => {
+const saveState = (state: Record<string, unknown>) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(LS_KEY_NAME, serializedState);
