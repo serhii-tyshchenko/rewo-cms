@@ -1,8 +1,4 @@
-type TNotification = {
-  id: string;
-  message: string;
-  type: 'success' | 'error' | 'info' | 'warning';
-};
+import { type TNotification } from './notification-service.types';
 
 class NotificationStore {
   private notifications: TNotification[] = [];
@@ -31,19 +27,29 @@ class NotificationStore {
   }
 
   success(message: string) {
-    return this.show({ type: 'success', message });
+    return this.show({
+      type: 'success',
+      message,
+      autoclose: true,
+      delay: 3000,
+    });
   }
 
   successPersistent(message: string) {
-    return this.show({ type: 'success', message });
+    return this.show({ type: 'success', message, autoclose: false, delay: 0 });
   }
 
   error(message: string) {
-    return this.show({ type: 'error', message });
+    return this.show({
+      type: 'error',
+      message,
+      autoclose: true,
+      delay: 5000,
+    });
   }
 
   errorPersistent(message: string) {
-    return this.show({ type: 'error', message });
+    return this.show({ type: 'error', message, autoclose: false, delay: 0 });
   }
 
   dismiss(id: string) {

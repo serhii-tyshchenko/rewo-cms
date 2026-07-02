@@ -50,6 +50,7 @@ function Notification(props: IProps) {
       <main className={`${NAME_SPACE}__content`}>
         <span
           className={`${NAME_SPACE}__message`}
+          // TODO: add a sanitizer to avoid XSS attacks
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: message }}
         />

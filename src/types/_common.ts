@@ -30,14 +30,6 @@ export type TListGenericData<T> = {
   pages: number;
 };
 
-export type TNotification = {
-  id: string;
-  type: 'success' | 'error' | 'warning' | 'info';
-  message: string;
-  autoclose: boolean;
-  delay: number;
-};
-
 export type TSearchParams = {
   search: string;
   page: string;
