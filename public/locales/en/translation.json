@@ -100,7 +100,7 @@
   "postSlug": "Post slug",
   "postStatuses": {
     "publish": "Published",
-    "pending": "Pending",
+    "pending": "Pending Review",
     "draft": "Draft",
     "trash": "Trash",
     "future": "Scheduled",
