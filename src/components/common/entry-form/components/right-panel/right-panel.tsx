@@ -15,6 +15,7 @@ import {
   PostActions,
   PostCategories,
   PostFeaturedMedia,
+  PostStatus,
   PostSubmitButton,
   PostTagsManager,
 } from './components';
@@ -50,7 +51,7 @@ function RightPanel(props: IProps) {
     onReloadEntry = () => {},
     onRemoveEntry = () => {},
   } = props;
-  const { meta, categories = [], date = '', tags, featuredMedia } = postData;
+  const { categories = [], date = '', tags, featuredMedia } = postData;
 
   const { t } = useTranslation();
 
@@ -58,7 +59,7 @@ function RightPanel(props: IProps) {
     link: mediaLink,
     sizes: mediaSizes,
     isLoading: isMediaLoading,
-  } = useFeaturedMedia(featuredMedia, meta);
+  } = useFeaturedMedia(featuredMedia);
 
   const {
     data: { data: allTags },
@@ -83,6 +84,7 @@ function RightPanel(props: IProps) {
         onChange={onChange}
         postCategories={categories}
       />
+      <PostStatus postStatus={postData.status} onChange={onChange} />
       {editMode && (
         <>
           <FormGroup>
