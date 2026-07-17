@@ -27,17 +27,18 @@ export const formatListPostsResponse = (
 export const formatRetrievePostResponse = (
   response: TPostDto,
 ): Partial<TPost> => ({
-  id: response.id,
-  title: response.title?.rendered,
+  categories: response.categories,
   content: response.content?.rendered,
   date: response.date,
-  link: response.link,
-  categories: response.categories,
   excerpt: response.excerpt?.rendered,
-  slug: decodeURIComponent(response.slug),
+  id: response.id,
   featuredMedia: response.featured_media,
+  link: response.link,
   meta: response.meta,
+  slug: decodeURIComponent(response.slug),
+  status: response.status,
   tags: response.tags,
+  title: response.title?.rendered,
 });
 
 export const formatRetrievePostMetaFieldsResponse = (response: {
