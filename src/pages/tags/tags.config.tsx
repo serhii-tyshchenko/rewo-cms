@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { TFunction } from 'i18next';
 
+import { Button } from '@components/ui';
 import { renderIconButtonsCell } from '@components/ui/table/cells';
 
 import { ROUTE } from '@constants/_common';
@@ -25,6 +26,16 @@ export const getColumns = (
     key: 'name',
     title: t('name'),
     className: 'text-left',
+    cell: (row) => (
+      <Button
+        onClick={() => onButtonClick(row, TAG_ACTION.EDIT)}
+        title={t('editTag')}
+        variant="action"
+        className="p-0"
+      >
+        {row.name}
+      </Button>
+    ),
   },
   {
     key: 'description',
@@ -55,12 +66,6 @@ export const getColumns = (
     },
     cell: (row: TTag) =>
       renderIconButtonsCell([
-        {
-          icon: 'pencil',
-          onClick: () => onButtonClick(row, TAG_ACTION.EDIT),
-          title: t('editTag'),
-          className: 'mr-1',
-        },
         {
           icon: 'trash',
           onClick: () => onButtonClick(row, TAG_ACTION.REMOVE),
