@@ -5,7 +5,7 @@ import { UPDATE_SETTINGS } from '../action-types';
 
 const initialState: TSettingsState = {
   language: 'en',
-  theme: 'light',
+  theme: 'system',
   isNavCollapsed: false,
   isRightPanelCollapsed: false,
   isBottomPanelCollapsed: false,
