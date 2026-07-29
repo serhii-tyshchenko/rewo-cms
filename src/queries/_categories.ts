@@ -12,7 +12,7 @@ import {
   updateCategory,
 } from '@api';
 
-import { toast } from '@services/notification-store';
+import { toast } from '@services';
 
 import {
   TCategory,

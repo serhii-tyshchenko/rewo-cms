@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 
 import { listUsers } from '@api';
 
-import { toast } from '@services/notification-store';
+import { toast } from '@services';
 
 import { TListUsersData, TListUsersQueryParams } from '@types';
 

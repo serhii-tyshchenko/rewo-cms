@@ -4,7 +4,7 @@ import { extractError, hasError } from '@api/utils';
 
 import { ERROR_MESSAGE, USER_ROLE } from '@constants';
 
-import { toast } from '@services/notification-store';
+import { toast } from '@services/notification-service';
 
 import {
   actionApiRequestEnded,

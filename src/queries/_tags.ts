@@ -4,7 +4,7 @@ import { addTag, listTags, removeTag, updateTag } from '@api';
 
 import { TAGS_DEFAULT_QUERY_PARAMS } from '@constants/_tags';
 
-import { toast } from '@services/notification-store';
+import { toast } from '@services';
 
 import { TListTagsData, TListTagsQueryParams, TTag } from '@types';
 

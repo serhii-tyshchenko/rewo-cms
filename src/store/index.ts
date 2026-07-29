@@ -1,4 +1,3 @@
-import * as ls from '@storage';
 import {
   applyMiddleware,
   compose,
@@ -6,6 +5,9 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 
+import * as ls from '@storage';
+
+import { authBroadcastMiddleware } from './middlewares/auth-broadcast';
 import rootReducer from './reducers';
 
 const persistedState = ls.loadState();
@@ -20,7 +22,7 @@ const composeTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
   persistedState,
-  composeTools(applyMiddleware(thunk)),
+  composeTools(applyMiddleware(thunk, authBroadcastMiddleware)),
 );
 
 store.subscribe(() => {

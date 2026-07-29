@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { listComments, removeComment } from '@api';
 
-import { toast } from '@services/notification-store';
+import { toast } from '@services';
 
 import {
   TCommentStatus,

@@ -13,7 +13,7 @@ import {
   updatePost,
 } from '@api';
 
-import { toast } from '@services/notification-store';
+import { toast } from '@services';
 
 import { TListPostsData, TListPostsQueryParams, TPost } from '@types';
 

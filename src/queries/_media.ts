@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { listMedia, removeMedia, retrieveMedia } from '@api';
 
-import { toast } from '@services/notification-store';
+import { toast } from '@services';
 
 import { TListMediaData, TListMediaQueryParams } from '@types';
 

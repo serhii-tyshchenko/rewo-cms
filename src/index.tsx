@@ -10,7 +10,7 @@ import { ErrorBoundary } from '@components/common';
 
 import { APP_ROOT } from '@constants';
 
-import { NotificationService } from '@services/notification-service';
+import { NotificationService } from '@services';
 
 import store from '@store';
 
