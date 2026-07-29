@@ -45,6 +45,7 @@
       "@pages": ["pages/"],
       "@queries": ["queries/"],
       "@queries/*": ["queries/*"],
+      "@services": ["services/"],
       "@services/*": ["services/*"],
       "@storage": ["storage/"],
       "@store": ["store/"],
