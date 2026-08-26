@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router';
 
 import { SuspenseFallback } from '@components/common';
 

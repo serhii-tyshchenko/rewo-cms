@@ -1,8 +1,7 @@
-/* eslint-disable no-alert */
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 
 import { isEqual } from 'lodash-es';
 
@@ -55,6 +54,7 @@ function PostEdit() {
   }, [dispatch, postData?.id, formData]);
 
   const handleReloadPost = useCallback(() => {
+    // eslint-disable-next-line no-alert
     if (hasChanges && !window.confirm(t('unsavedChangesConfirm'))) {
       return;
     }
@@ -62,6 +62,7 @@ function PostEdit() {
   }, [hasChanges, refetch, t]);
 
   const handleRemovePost = useCallback(async () => {
+    // eslint-disable-next-line no-alert
     if (!window.confirm(t('removePostConfirm', { title: postData?.title }))) {
       return;
     }

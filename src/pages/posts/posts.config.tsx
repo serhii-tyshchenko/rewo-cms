@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Fragment } from 'react/jsx-runtime';
 
 import { TFunction } from 'i18next';
@@ -9,7 +9,7 @@ import { POSTS_STATUS_TO_ICON_MAP, ROUTE } from '@constants';
 
 import { TListPost, TTableColumnConfig, TTag } from '@types';
 
-import { isPostDeleted, normalizeString, prettyNumber } from '@utils';
+import { isPostDeleted, normalizeString } from '@utils';
 
 interface IArgs {
   allTags: TTag[];
