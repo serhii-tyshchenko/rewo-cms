@@ -42,6 +42,25 @@ export const useAddPost = () => {
   return { onAddPost, isAdding };
 };
 
+export const useAddPostWithRetry = () => {
+  const { t } = useTranslation();
+
+  const { mutateAsync: onAddPostWithRetry, isLoading: isAdding } = useMutation(
+    (data: Partial<TPost>) => addPost(data),
+    {
+      retry: 3,
+      retryDelay: (attempt) => Math.min(1000 * 2 ** attempt, 5000),
+      mutationKey: 'add-post-with-retry',
+      onError: (error: string) => {
+        toast.error(t('postAddedError'));
+        console.error(error);
+      },
+    },
+  );
+
+  return { onAddPostWithRetry, isAdding };
+};
+
 export const useListPosts = (queryParams: TListPostsQueryParams) => {
   const { t } = useTranslation();
 

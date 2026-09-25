@@ -1,4 +1,5 @@
 export * from './clean-object';
+export * from './convert-string-to-array';
 export * from './count-words';
 export * from './create-empty-array';
 export * from './format-options';

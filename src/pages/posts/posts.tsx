@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { isEmpty } from 'lodash-es';
 
-import { DataTable } from '@components/common';
+import { BulkAddModal, DataTable } from '@components/common';
 import { BaseLayout, Content } from '@components/layout';
 import { IconButton } from '@components/ui';
 
@@ -63,6 +63,7 @@ function Posts() {
   const { onRemovePosts } = useRemovePosts();
 
   const [isQuickEditModalOpen, toggleQuickEditModal] = useToggle();
+  const [isBulkAddModalOpen, toggleBulkAddModal] = useToggle();
   const [selectedRows, setSelectedRows, resetSelectedRows] = useStateWithReset<
     TListPost[]
   >([]);
@@ -147,7 +148,7 @@ function Posts() {
 
   return (
     <BaseLayout>
-      <PostsHeader />
+      <PostsHeader onBulkAddClick={toggleBulkAddModal} />
       <Content>
         <h2 className="mb-4">{t('page.posts')}</h2>
         <PostsTableToolbar
@@ -194,6 +195,7 @@ function Posts() {
           onConfirm={onQuickUpdate}
         />
       )}
+      {isBulkAddModalOpen && <BulkAddModal onClose={toggleBulkAddModal} />}
     </BaseLayout>
   );
 }

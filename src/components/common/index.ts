@@ -1,3 +1,4 @@
+export * from './bulk-add-modal';
 export * from './collapse-button';
 export * from './content-editor';
 export * from './data-stats';
