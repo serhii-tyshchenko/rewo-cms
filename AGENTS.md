@@ -29,6 +29,8 @@ Prefer validating changes with targeted tests first, then run broader checks bef
 - API constants and routes: [src/constants/\_api.ts](src/constants/_api.ts), [src/constants/\_common.ts](src/constants/_common.ts)
 - Data fetching hooks: [src/queries/](src/queries/)
 - Global state: [src/store/](src/store/)
+- CSV bulk post creation: [src/components/common/bulk-add-modal/](src/components/common/bulk-add-modal/), [src/queries/\_posts.ts](src/queries/_posts.ts)
+- Cross-tab login/logout synchronization: [src/store/middlewares/auth-broadcast.ts](src/store/middlewares/auth-broadcast.ts), [src/services/](src/services/)
 - UI and page composition: [src/components/](src/components/), [src/pages/](src/pages/)
 - Localization bootstrap: [src/i18n.ts](src/i18n.ts)
 - Tooling config: [tsconfig.json](tsconfig.json), [vite.config.ts](vite.config.ts)

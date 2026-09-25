@@ -43,13 +43,22 @@ In practice, this means the app depends on a reachable WordPress backend and is 
 ## Key Features
 
 - WordPress-first content management UI for posts, taxonomy, comments, users, and media
+- Bulk post creation from CSV files, including category/tag IDs and custom meta fields
 - JWT-based login flow against a WordPress backend
+- Login and logout state synchronized across browser tabs
+- Toast notifications for successful and failed actions
 - React Query-powered data fetching and caching for REST resources
 - React Router protected routes for authenticated admin flows
 - Redux store for shared application state
 - i18n support with `i18next`
 - SCSS-based styling system
 - Unit testing with Vitest and Testing Library
+
+### Bulk Add Posts
+
+Use **Bulk add** on the posts page to create posts from a CSV file. The first row must contain headers. Include `title`, `slug`, and `categories`; `tags` and `status` are also supported. Category and tag values are comma-separated WordPress IDs. If `status` is omitted, posts are published. Any other non-empty column is sent as a post meta field, so register custom fields with WordPress as described below.
+
+Uploads run sequentially and show progress. You can configure the delay between posts in the upload dialog.
 
 ## Tech Stack
 
@@ -151,8 +160,9 @@ npm run test
 - `src/components/` - reusable UI building blocks
 - `src/store/` - Redux actions, reducers, selectors, and store setup
 - `src/queries/` - data-fetching hooks and query integrations
-- `src/localization/` and `src/i18n.ts` - translation setup
-- `public/` - static assets and locale files
+- `src/services/` - notification and cross-tab authentication services
+- `src/i18n.ts` and `public/locales/` - translation setup and English/Ukrainian locale files
+- `public/` - static assets and hosting artifacts
 
 ## Configuration
 
