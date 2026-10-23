@@ -3,7 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { isEmpty } from 'lodash-es';
 
-import { DialogConfirm, FormGroup, Input, Select } from '@components/ui';
+import {
+  DialogConfirm,
+  FormGroup,
+  Input,
+  InputNumber,
+  Select,
+} from '@components/ui';
 
 import { INITIAL_CONFIG } from './insert-image-modal.constants';
 import { type TInsertImageConfig } from './insert-image-modal.types';
@@ -103,21 +109,21 @@ function InsertImageModal(props: IProps) {
       </div>
       <div className="flex gap-2">
         <div className="grow">
-          <Input
-            type="number"
+          <InputNumber
             label={t('textEditor.width')}
             name="width"
             value={config.width}
             onChange={handleChange}
+            min={0}
           />
         </div>
         <div className="grow">
-          <Input
-            type="number"
+          <InputNumber
             label={t('textEditor.height')}
             name="height"
             value={config.height}
             onChange={handleChange}
+            min={0}
           />
         </div>
       </div>

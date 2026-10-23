@@ -13,7 +13,6 @@ const NAME_SPACE = 'input';
 interface IProps {
   type?:
     | 'text'
-    | 'number'
     | 'password'
     | 'email'
     | 'tel'
@@ -35,8 +34,6 @@ interface IProps {
   disabled?: boolean;
   label?: string;
   error?: string;
-  min?: number;
-  max?: number;
   size?: TControlSize;
   title?: string;
   readonly?: boolean;
@@ -61,8 +58,6 @@ function Input(props: IProps) {
     readonly = false,
     label = '',
     error = '',
-    min = undefined,
-    max = undefined,
     size = 'normal',
     title = '',
     autocomplete = 'off',
@@ -76,7 +71,6 @@ function Input(props: IProps) {
     },
     className,
   );
-  // TODO extract input number to separate component to avoid all these props that are not used for other types of input
 
   return (
     <>
@@ -98,8 +92,6 @@ function Input(props: IProps) {
         autoFocus={autoFocus}
         disabled={disabled}
         readOnly={readonly}
-        min={min}
-        max={max}
         className={rootClassName}
         data-testid={testId}
         title={title}
