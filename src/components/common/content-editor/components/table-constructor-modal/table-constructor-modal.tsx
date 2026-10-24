@@ -3,13 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { noop } from 'lodash-es';
 
-import {
-  DialogConfirm,
-  FormGroup,
-  Input,
-  InputNumber,
-  Select,
-} from '@components/ui';
+import { DialogConfirm, FormGroup, Input, Select } from '@components/ui';
 
 import { INITIAL_CONFIG } from './table-constructor-modal.constants';
 import { generateTable } from './table-constructor-modal.utils';
@@ -60,8 +54,9 @@ function TableConstructorModal(props: IProps) {
     >
       <FormGroup className="flex justify-between items-center gap-2">
         <div>
-          <InputNumber
+          <Input
             label={t('rows')}
+            type="number"
             name="rows"
             min={1}
             value={config.rows}
@@ -69,8 +64,9 @@ function TableConstructorModal(props: IProps) {
           />
         </div>
         <div>
-          <InputNumber
+          <Input
             label={t('columns')}
+            type="number"
             name="columns"
             min={1}
             value={config.columns}
