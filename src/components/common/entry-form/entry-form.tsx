@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { first, isEmpty } from 'lodash-es';
 
-import { Checkbox, FormGroup, Input, Textarea } from '@components/ui';
+import { Checkbox, FormGroup, InputText, Textarea } from '@components/ui';
 
 import { doUpdateSettings } from '@store/actions';
 import { selectSettings } from '@store/selectors';
@@ -156,7 +156,7 @@ function EntryForm(props: IProps) {
     <form className={NAME_SPACE}>
       <LeftPanel>
         <FormGroup>
-          <Input
+          <InputText
             label={t('title')}
             name="title"
             onChange={handleChange}
@@ -167,7 +167,7 @@ function EntryForm(props: IProps) {
         </FormGroup>
         <div className="flex items-center gap-3">
           <FormGroup className="grow">
-            <Input
+            <InputText
               name="slug"
               placeholder={t(autoSlug ? 'autoGenerateSlug' : 'enterSlug')}
               value={slug}

@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Dropdown, IconButton, Input, Select } from '@components/ui';
+import {
+  Button,
+  Dropdown,
+  IconButton,
+  InputSearch,
+  Select,
+} from '@components/ui';
 
 import { useToggle } from '@hooks';
 
@@ -68,9 +74,8 @@ function DataTableToolbar<T extends TBaseQueryParams>(props: IProps<T>) {
         className="flex items-center grow ml-auto"
         style={{ maxWidth: '400px' }}
       >
-        <Input
+        <InputSearch
           name="search"
-          type="search"
           value={searchQuery}
           onChange={handleSearchQueryChange}
           placeholder={t('enterSearchQuery')}

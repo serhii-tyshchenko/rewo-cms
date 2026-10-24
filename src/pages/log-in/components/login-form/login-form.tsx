@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button, FormGroup, Input } from '@components/ui';
+import { Button, FormGroup, InputPassword, InputText } from '@components/ui';
 
 import { TLoginForm } from '../../types';
 import './login-form.styles.scss';
@@ -19,26 +19,25 @@ function LoginForm(props: IProps) {
   return (
     <form className="login-form" onSubmit={onSubmit}>
       <FormGroup>
-        <Input
+        <InputText
           name="username"
           placeholder={t('usernameOrEmail')}
           value={data.username}
           onChange={onChange}
           label={t('usernameOrEmail')}
           required
-          autocomplete="username"
+          autoComplete="username"
           autoFocus
         />
       </FormGroup>
       <FormGroup className="mb-6">
-        <Input
+        <InputPassword
           name="password"
-          type="password"
           placeholder={t('password')}
           value={data.password}
           onChange={onChange}
           label={t('password')}
-          autocomplete="password"
+          autoComplete="current-password"
           required
         />
       </FormGroup>

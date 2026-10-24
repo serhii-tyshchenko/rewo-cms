@@ -1,4 +1,4 @@
-import { FormGroup, Input } from '@components/ui';
+import { FormGroup, InputText } from '@components/ui';
 
 interface IProps {
   data: Array<{
@@ -13,7 +13,7 @@ function EntryMetaFields(props: IProps) {
 
   return data.map(({ name, value }) => (
     <FormGroup key={name}>
-      <Input name={name} value={value} label={name} onChange={onChange} />
+      <InputText name={name} value={value} label={name} onChange={onChange} />
     </FormGroup>
   ));
 }

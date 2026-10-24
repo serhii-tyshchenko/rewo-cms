@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { isEqual } from 'lodash-es';
 
-import { Button, IconButton, Input } from '@components/ui';
+import { Button, IconButton, InputText } from '@components/ui';
 
 import { TSnippet } from '@types';
 
@@ -60,7 +60,7 @@ function SnippetItem(props: IProps) {
         </Button>
       )}
       {isEditing && (
-        <Input
+        <InputText
           value={snippetValue}
           onChange={(e) => setSnippetValue(e.target.value)}
           placeholder={t('editSnippetPlaceholder')}

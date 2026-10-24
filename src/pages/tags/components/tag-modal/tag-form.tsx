@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { FormGroup, Input, Textarea } from '@components/ui';
+import { FormGroup, InputText, Textarea } from '@components/ui';
 
 import { TTag } from '@types';
 
@@ -23,7 +23,7 @@ function TagForm(props: IProps) {
   return (
     <form>
       <FormGroup>
-        <Input
+        <InputText
           name="name"
           value={formData.name}
           onChange={onChange}
@@ -33,7 +33,7 @@ function TagForm(props: IProps) {
         />
       </FormGroup>
       <FormGroup>
-        <Input
+        <InputText
           name="slug"
           value={formData.slug}
           onChange={onChange}

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { isEmpty, isEqual, some } from 'lodash-es';
 
 import { PostTagsManager } from '@components/common/entry-form/components/right-panel/components';
-import { DialogConfirm, FormGroup, Input, Select } from '@components/ui';
+import { DialogConfirm, FormGroup, InputText, Select } from '@components/ui';
 
 import { TCategory, TListPost, TTag } from '@types';
 
@@ -90,7 +90,7 @@ function QuickEditModal(props: IProps) {
     >
       <form>
         <FormGroup>
-          <Input
+          <InputText
             name="title"
             value={formData.title}
             onChange={handleChange}
@@ -100,7 +100,7 @@ function QuickEditModal(props: IProps) {
           />
         </FormGroup>
         <FormGroup>
-          <Input
+          <InputText
             name="slug"
             value={formData.slug}
             onChange={handleChange}

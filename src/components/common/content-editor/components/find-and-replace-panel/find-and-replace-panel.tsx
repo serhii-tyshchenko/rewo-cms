@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { isEmpty, noop } from 'lodash-es';
 
-import { Button, Input } from '@components/ui';
+import { Button, InputText } from '@components/ui';
 
 import './find-and-replace-panel.styles.scss';
 import useFindAndReplace from './use-find-and-replace';
@@ -30,7 +30,7 @@ function FindAndReplacePanel(props: IProps) {
     <div className="relative">
       <div className={NAME_SPACE}>
         <div>
-          <Input
+          <InputText
             name="find"
             label={t('findWhat')}
             value={formValues.find}
@@ -40,7 +40,7 @@ function FindAndReplacePanel(props: IProps) {
           />
         </div>
         <div>
-          <Input
+          <InputText
             name="replace"
             label={t('replaceWith')}
             value={formValues.replace}

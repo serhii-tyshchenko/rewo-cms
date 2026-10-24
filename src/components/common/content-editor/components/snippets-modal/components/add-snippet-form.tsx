@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { isEmpty } from 'lodash-es';
 import { v4 as uuid } from 'uuid';
 
-import { Input } from '@components/ui';
+import { InputText } from '@components/ui';
 
 import { TSnippet } from '@types';
 
@@ -35,7 +35,7 @@ function AddSnippetForm(props: IProps) {
 
   return (
     <form onSubmit={handleAddSnippet} className="flex items-center mt-auto">
-      <Input
+      <InputText
         value={newSnippet}
         onChange={handleChange}
         placeholder={t('enterNewSnippet')}
