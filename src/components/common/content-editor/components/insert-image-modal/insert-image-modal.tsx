@@ -8,6 +8,7 @@ import {
   FormGroup,
   InputNumber,
   InputText,
+  InputUrl,
   Select,
 } from '@components/ui';
 
@@ -19,6 +20,17 @@ interface IProps {
   onClose?: () => void;
   onConfirm?: (image: string) => void;
 }
+
+const DECODING_OPTIONS = [
+  { label: 'async', value: 'async' },
+  { label: 'sync', value: 'sync' },
+  { label: 'auto', value: 'auto' },
+];
+
+const LOADING_OPTIONS = [
+  { label: 'lazy', value: 'lazy' },
+  { label: 'eager', value: 'eager' },
+];
 
 function InsertImageModal(props: IProps) {
   const { onClose = null, onConfirm = null } = props;
@@ -33,6 +45,11 @@ function InsertImageModal(props: IProps) {
   const handleConfirm = (): void => {
     if (onConfirm) onConfirm(generateImage(config));
     handleClose();
+  };
+
+  const handleSubmit = (ev: React.FormEvent<HTMLFormElement>): void => {
+    ev.preventDefault();
+    handleConfirm();
   };
 
   const handleChange = useCallback(
@@ -54,79 +71,76 @@ function InsertImageModal(props: IProps) {
       cancelBtnTitle={t('cancel')}
       confirmBtnTitle={t('confirm')}
     >
-      <FormGroup>
-        <InputText
-          label={t('imageURL')}
-          name="src"
-          value={config.src}
-          onChange={handleChange}
-          required
-        />
-      </FormGroup>
-      <FormGroup>
-        <InputText
-          label={t('altText')}
-          name="alt"
-          value={config.alt}
-          onChange={handleChange}
-        />
-      </FormGroup>
-      <FormGroup>
-        <InputText
-          label={t('cssClasses')}
-          name="class"
-          value={config.class}
-          onChange={handleChange}
-        />
-      </FormGroup>
-      <div className="flex gap-2 mb-3">
-        <div className="grow">
-          <Select
-            className="w-full"
-            label={t('textEditor.loading')}
-            name="loading"
-            value={config.loading}
+      <form onSubmit={handleSubmit}>
+        <FormGroup>
+          <InputUrl
+            label={t('imageURL')}
+            name="src"
+            value={config.src}
             onChange={handleChange}
-            options={[
-              { label: 'lazy', value: 'lazy' },
-              { label: 'eager', value: 'eager' },
-            ]}
+            required
           />
-        </div>
-        <div className="grow">
-          <Select
-            className="w-full"
-            label={t('textEditor.decoding')}
-            name="decoding"
-            value={config.decoding}
+        </FormGroup>
+        <FormGroup>
+          <InputText
+            label={t('altText')}
+            name="alt"
+            value={config.alt}
             onChange={handleChange}
-            options={[
-              { label: 'async', value: 'async' },
-              { label: 'eager', value: 'eager' },
-            ]}
           />
-        </div>
-      </div>
-      <div className="flex gap-2">
-        <div className="grow">
-          <InputNumber
-            label={t('textEditor.width')}
-            name="width"
-            value={config.width}
+        </FormGroup>
+        <FormGroup>
+          <InputText
+            label={t('cssClasses')}
+            name="class"
+            value={config.class}
             onChange={handleChange}
-            min={0}
           />
+        </FormGroup>
+        <div className="flex gap-2 mb-3">
+          <div className="grow">
+            <Select
+              className="w-full"
+              label={t('textEditor.loading')}
+              name="loading"
+              value={config.loading}
+              onChange={handleChange}
+              options={LOADING_OPTIONS}
+            />
+          </div>
+          <div className="grow">
+            <Select
+              className="w-full"
+              label={t('textEditor.decoding')}
+              name="decoding"
+              value={config.decoding}
+              onChange={handleChange}
+              options={DECODING_OPTIONS}
+            />
+          </div>
         </div>
-        <div className="grow">
-          <InputNumber
-            label={t('textEditor.height')}
-            name="height"
-            value={config.height}
-            onChange={handleChange}
-            min={0}
-          />
+        <div className="flex gap-2">
+          <div className="grow">
+            <InputNumber
+              label={t('textEditor.width')}
+              name="width"
+              value={config.width}
+              onChange={handleChange}
+              min={0}
+            />
+          </div>
+          <div className="grow">
+            <InputNumber
+              label={t('textEditor.height')}
+              name="height"
+              value={config.height}
+              onChange={handleChange}
+              min={0}
+            />
+          </div>
         </div>
-      </div>
+        <button type="submit" hidden aria-hidden="true" />
+      </form>
     </DialogConfirm>
   );
 }
