@@ -106,6 +106,12 @@ function InputText(
   return <Input {...props} type="text" />;
 }
 
+function InputUrl(
+  props: Omit<TInputCommonProps & TInputTextSpecificProps, 'type'>,
+) {
+  return <Input {...props} type="url" />;
+}
+
 function InputPassword(
   props: Omit<TInputCommonProps & TInputTextSpecificProps, 'type'>,
 ) {
@@ -118,4 +124,4 @@ function InputSearch(
   return <Input {...props} type="search" />;
 }
 
-export { InputNumber, InputText, InputPassword, InputSearch };
+export { InputNumber, InputText, InputPassword, InputSearch, InputUrl };

@@ -15,7 +15,7 @@ type TInputTextSpecificProps = {
 };
 
 type TInputCommonProps = {
-  type?: 'text' | 'number' | 'password' | 'search';
+  type?: 'text' | 'number' | 'password' | 'search' | 'url';
   name?: string;
   id?: string;
   testId?: string;
