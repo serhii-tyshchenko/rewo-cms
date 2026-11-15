@@ -9,7 +9,16 @@ function PostFeaturedMedia(props: IProps) {
   const { t } = useTranslation();
   const { link, sizes, loading } = props;
 
-  if (loading) return <p className="italic">{t('loading')}</p>;
+  if (loading)
+    return (
+      <>
+        <p className="label label--normal mb-1">{t('featuredImage')}</p>
+        <div
+          className="self-center bg-gray-200 animate-pulse w-full"
+          style={{ height: '320px' }}
+        />
+      </>
+    );
 
   if (!link) return null;
 

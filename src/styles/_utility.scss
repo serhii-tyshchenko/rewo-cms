@@ -5,8 +5,16 @@
   position: absolute;
 }
 
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 .appearance-none {
   appearance: none;
+}
+
+.bg-gray-200 {
+  background-color: #e5e7eb;
 }
 
 .block {
@@ -252,7 +260,7 @@
 }
 
 .text-red-50 {
-  color: oklch(97.1% 0.013 17.38);
+  color: oklch(97.1% 0.013 17.38deg);
 }
 
 .text-right {
@@ -308,5 +316,17 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
   }
 }
